@@ -1,0 +1,7 @@
+listen: :443
+tls:
+  cert: /etc/vps-tls/fullchain.pem
+  key: /etc/vps-tls/key.pem
+auth:
+  type: password
+  password: REPLACE_PER_USER_PASSWORD

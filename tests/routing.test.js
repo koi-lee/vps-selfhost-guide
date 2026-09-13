@@ -1,0 +1,11 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict'),path=require('node:path');
+const ctx={};vm.createContext(ctx);vm.runInContext(fs.readFileSync(path.join(__dirname,'../scripts/shared-profile.js'),'utf8'),ctx);
+const out=ctx.main({proxies:[{name:'test-hy',type:'hysteria2',server:'edge.example.com',password:'TEST_ONLY'}]});
+const regexRule=out.rules.find(r=>r.startsWith('DOMAIN-REGEX,'));
+const regex=new RegExp(regexRule.split(',')[1]);
+assert(regex.test('upos-test.akamaized.net'));
+assert(!regex.test('upos-testXakamaizedYnet'));
+assert(!regex.test('upos-test.akamaized.net.attacker.example'));
+for(const name of ['上网线路','自动切换（推荐）','DIRECT']) assert.throws(()=>ctx.main({proxies:[{name,type:'hysteria2',server:'edge.example.com'}]}));
+const auto=out['proxy-groups'][1];assert.equal(auto.interval,30);assert.equal(auto.timeout,5000);
+console.log('PASS: regex positive/negative samples, reserved names, health settings; no network or live config loaded');

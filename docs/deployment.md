@@ -16,11 +16,9 @@ Agent 先查候选供应商官方价格和条款，不固定推荐过时促销�
 
 ## 3. HY2 主线路与用户
 
-从 [3X-UI 官方项目](https://github.com/mhsanaei/3x-ui) 核对当前发行版、HY2 支持情况及安装步骤。安装后记录面板与内核版本，设置管理账号，面板绑定回环并通过 SSH 隧道访问。创建 HY2 入站：UDP 443、自己的证书/私钥、每用户独立认证信息。
+新建路线先使用 [Hysteria 官方服务端](https://v2.hysteria.network/docs/getting-started/Server/)，按 [恢复执行手册](rebuild-runbook.md) 的模板部署 UDP 443、自己的有效域名证书和认证配置。模板为单密码起步版；多人独立撤销需要按所用版本实现并测试多用户认证，不能共用密码后声称每人独立。
 
-如果所选面板版本不支持需要的 HY2 配置，不手工修改面板数据库：使用 [Hysteria 官方服务端](https://v2.hysteria.network/docs/getting-started/Server/) 作为独立服务，并为每人生成客户端配置；先明确记录管理方式差异。
-
-单独导出第一个用户的 Mihomo 节点，通过客户端真实访问 HTTPS。核对认证失败、证书与 UDP 路径。首页 HTTP 成功并不证明 HY2 成功。
+[3X-UI](https://github.com/mhsanaei/3x-ui) 是可选管理层。采用前核对当前版本的 HY2 支持、导出与撤销能力，记录面板与内核版本；管理面板绑定回环并通过 SSH 隧道访问。功能不支持时保留独立服务，不修改面板数据库补功能。
 
 ## 4. VLESS 与 CDN 备用
 

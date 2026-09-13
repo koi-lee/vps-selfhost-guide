@@ -51,10 +51,10 @@ flowchart LR
 
 ## 离线验证
 
-安装 Node.js 后运行：
+安装 Node.js 和 Python 3 后运行：
 
 ```sh
-node tests/profile.test.js
+node --test tests/*.test.js
 python3 tests/check_docs.py
 ```
 
@@ -67,3 +67,5 @@ python3 tests/check_docs.py
 ## 继续交流
 
 更多项目见 [koi-lee 的 GitHub 主页](https://github.com/koi-lee)。如果这份指南帮你完成部署，可以收藏或分享给有相同需求的人；欢迎提交脱敏复现步骤、文档纠错和改进建议。请勿在 Issue 中贴订阅、密码、服务器日志中的 token 或私密截图。
+
+- [部署与恢复执行手册](docs/rebuild-runbook.md)：安装映射、续期、多用户边界和恢复顺序。

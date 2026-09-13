@@ -31,7 +31,7 @@ function main(config) {
   "DOMAIN-SUFFIX,biliapi.net,DIRECT",
   "DOMAIN-SUFFIX,bilivideo.com,DIRECT",
   "DOMAIN-SUFFIX,hdslb.com,DIRECT",
-  "DOMAIN-REGEX,^upos-.*\\\\.akamaized\\\\.net$,DIRECT",
+  "DOMAIN-REGEX,^upos-.*\\.akamaized\\.net$,DIRECT",
   "DOMAIN-SUFFIX,cnb.cool,DIRECT",
   "DOMAIN-SUFFIX,mianshiya.com,DIRECT",
   "DOMAIN,pic.code-nav.cn,DIRECT",

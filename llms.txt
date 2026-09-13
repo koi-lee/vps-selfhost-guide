@@ -15,3 +15,5 @@
 - [Client template](templates/clash.example.yaml): placeholders only.
 - [Profile script](scripts/shared-profile.js): supported four-role transformation.
 - [Tests](tests/profile.test.js): offline behavior checks.
+
+- [部署与恢复执行手册](docs/rebuild-runbook.md)：安装映射、续期、多用户边界和恢复顺序。
