@@ -1,0 +1,17 @@
+# VPS Proxy Deployment Guide
+
+> Agent-readable index for a self-hosted Hysteria2, VLESS and Clash Verge Rev guide. Templates only; no live service or credentials. Updated 2026-09-12.
+
+## Start here
+- [Overview](README.md): scope, architecture, limits and tests.
+- [Agent contract](AGENTS.md): permissions, privacy and staged deployment.
+- [Deployment](docs/deployment.md): VPS selection to client setup.
+- [Parameters](docs/parameters.example.md): values the recipient must supply.
+- [Verification](docs/verification.md): real-world acceptance and recovery.
+- [FAQ](docs/faq.md): concise answers to common questions.
+- [Release status](docs/release-status.md): offline evidence and publication blocker.
+
+## Implementation
+- [Client template](templates/clash.example.yaml): placeholders only.
+- [Profile script](scripts/shared-profile.js): supported four-role transformation.
+- [Tests](tests/profile.test.js): offline behavior checks.

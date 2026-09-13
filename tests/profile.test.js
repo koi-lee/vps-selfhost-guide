@@ -1,0 +1,15 @@
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict'),path=require('node:path');
+const ctx={};vm.createContext(ctx);vm.runInContext(fs.readFileSync(path.join(__dirname,'../scripts/shared-profile.js'),'utf8'),ctx);
+const sample={proxies:[{name:'hy',type:'hysteria2',server:'edge.example.com',password:'TEST_ONLY', 'skip-cert-verify':false},{name:'cdn',type:'vless',network:'ws',server:'cdn.example.com',uuid:'TEST_ONLY'},{name:'v4',type:'vless',network:'tcp',server:'192.0.2.10'},{name:'v6',type:'vless',network:'tcp',server:'2001:db8::10'}]};
+const before=JSON.stringify(sample.proxies);const out=ctx.main(structuredClone(sample));
+assert.equal(JSON.stringify(out.proxies),before);
+assert.deepEqual(Array.from(out['proxy-groups'][1].proxies),['hy','cdn','v4']);
+assert.deepEqual(Array.from(out['proxy-groups'][0].proxies),['自动切换（推荐）','hy','v6','cdn','v4','DIRECT']);
+assert.equal(out['proxy-groups'][1].hidden,true);
+assert.equal(JSON.stringify(ctx.main(JSON.parse(JSON.stringify(out)))),JSON.stringify(out));
+assert.equal(out.rules.at(-1),'MATCH,上网线路');
+assert.equal(new Set(out.rules).size,out.rules.length);
+assert.equal(ctx.main({proxies:[sample.proxies[0]]})['proxy-groups'][1].proxies.length,1);
+assert.throws(()=>ctx.main({proxies:[]}));
+assert.throws(()=>ctx.main({proxies:[sample.proxies[0],sample.proxies[0]]}));
+console.log('PASS: 角色、排序、幂等、凭据保留、隐藏组、单节点与非法输入');

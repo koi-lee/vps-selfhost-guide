@@ -1,0 +1,53 @@
+# 仅为模板；REPLACE_* 必须由接收者替换。
+mode: rule
+mixed-port: 7890
+allow-lan: false
+ipv6: true
+tcp-concurrent: true
+proxies:
+  - name: HY2-main
+    type: hysteria2
+    server: edge.example.com
+    port: 443
+    password: REPLACE_HY2_PASSWORD
+    sni: edge.example.com
+    skip-cert-verify: false
+  - name: VLESS-CDN
+    type: vless
+    server: cdn.example.com
+    port: 8443
+    uuid: REPLACE_USER_UUID
+    network: ws
+    tls: true
+    servername: cdn.example.com
+    ws-opts:
+      path: /vless-ws
+      headers:
+        Host: cdn.example.com
+  - name: VLESS-IPv4
+    type: vless
+    server: 192.0.2.10
+    port: 443
+    uuid: REPLACE_USER_UUID
+    network: tcp
+    tls: true
+    servername: edge.example.com
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+  - name: VLESS-IPv6
+    type: vless
+    server: "2001:db8::10"
+    port: 443
+    uuid: REPLACE_USER_UUID
+    network: tcp
+    tls: true
+    servername: edge.example.com
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+proxy-groups:
+  - name: 上网线路
+    type: select
+    proxies: [HY2-main, VLESS-CDN, VLESS-IPv4, VLESS-IPv6, DIRECT]
+rules:
+  - GEOIP,CN,DIRECT
+  - MATCH,上网线路
