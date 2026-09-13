@@ -4,7 +4,7 @@
 
 Self-hosted proxy deployment guide for AI agents: VPS selection, Hysteria2, VLESS, IPv6, CDN fallback and Clash Verge Rev. Includes credential-free templates and repeatable checks.
 
-> 状态：新版完成离线验证；新 VPS 端到端部署尚未复现。仓库暂保持私有，历史隐私审查阻塞公开发布，见 [发布状态](docs/release-status.md)。不承诺一键成功或复制他人的网速。
+> 状态：新版完成离线验证；新 VPS 端到端部署尚未复现。本仓库由脱敏文件建立全新历史，发布记录，见 [发布状态](docs/release-status.md)。不承诺一键成功或复制他人的网速。
 
 ## 适合谁
 
@@ -62,7 +62,7 @@ python3 tests/check_docs.py
 
 ## 版本与证据
 
-更新日期：2026-09-12。本版本完成脚本回归、文档链接与模板隐私检查；服务器配置与真实流量仍由部署者验收。[变更记录](CHANGELOG.md) · [安全说明](SECURITY.md) · [MIT 许可证](LICENSE)
+更新日期：2026-09-13。本版本完成脚本回归、文档链接与模板隐私检查；服务器配置与真实流量仍由部署者验收。[变更记录](CHANGELOG.md) · [安全说明](SECURITY.md) · [MIT 许可证](LICENSE)
 
 ## 继续交流
 

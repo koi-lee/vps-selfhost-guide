@@ -1,6 +1,6 @@
 # VPS Proxy Deployment Guide
 
-> Agent-readable index for a self-hosted Hysteria2, VLESS and Clash Verge Rev guide. Templates only; no live service or credentials. Updated 2026-09-12.
+> Agent-readable index for a self-hosted Hysteria2, VLESS and Clash Verge Rev guide. Templates only; no live service or credentials. Updated 2026-09-13.
 
 ## Start here
 - [Overview](README.md): scope, architecture, limits and tests.
@@ -9,7 +9,7 @@
 - [Parameters](docs/parameters.example.md): values the recipient must supply.
 - [Verification](docs/verification.md): real-world acceptance and recovery.
 - [FAQ](docs/faq.md): concise answers to common questions.
-- [Release status](docs/release-status.md): offline evidence and publication blocker.
+- [Release status](docs/release-status.md): offline evidence and publication limits.
 
 ## Implementation
 - [Client template](templates/clash.example.yaml): placeholders only.
