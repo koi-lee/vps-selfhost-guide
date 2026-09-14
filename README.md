@@ -1,10 +1,20 @@
 # VPS 自建代理指南：Hysteria2 + VLESS + Clash Verge Rev
 
+[简体中文](README.md) · [English](i18n/README.en.md) · [日本語](i18n/README.ja.md) · [한국어](i18n/README.ko.md) · [Español](i18n/README.es.md) · [Français](i18n/README.fr.md)
+
 **让 AI Agent 按阶段帮你完成 VPS 选购、四节点配置、国内外分流与验收。**
 
 Self-hosted proxy deployment guide for AI agents: VPS selection, Hysteria2, VLESS, IPv6, CDN fallback and Clash Verge Rev. Includes credential-free templates and repeatable checks.
 
 > 状态：新版完成离线验证；新 VPS 端到端部署尚未复现。本仓库由脱敏文件建立全新历史，发布记录，见 [发布状态](docs/release-status.md)。不承诺一键成功或复制他人的网速。
+
+## 我使用的 VPS 服务商
+
+本教程作者使用 RackNerd 进行实际部署，你可以参考教程选择适合自己的配置。
+
+**[查看 RackNerd，支持教程持续更新](https://my.racknerd.com/aff.php?aff=21220)**
+
+*通过支持链接购买，我可能获得佣金，用于支持教程维护与更新。感谢你的支持！*
 
 ## 适合谁
 
@@ -69,3 +79,7 @@ python3 tests/check_docs.py
 更多项目见 [koi-lee 的 GitHub 主页](https://github.com/koi-lee)。如果这份指南帮你完成部署，可以收藏或分享给有相同需求的人；欢迎提交脱敏复现步骤、文档纠错和改进建议。请勿在 Issue 中贴订阅、密码、服务器日志中的 token 或私密截图。
 
 - [部署与恢复执行手册](docs/rebuild-runbook.md)：安装映射、续期、多用户边界和恢复顺序。
+
+## 多语言范围
+
+六种语言提供入口和核心操作指引；详细部署、恢复与验收文档目前以中文为维护源。其他语言可让 Agent 按原文解释，不代表所有文档已翻译。译文由 AI 辅助完成，尚未经过母语者校对。共用代码、占位符和代理组标识，不维护六套配置。默认分流面向中国网络，其他地区需核对路由策略。维护方式见 [翻译维护](i18n/MAINTENANCE.md)。

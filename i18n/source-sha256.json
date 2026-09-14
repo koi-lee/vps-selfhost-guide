@@ -1,0 +1,14 @@
+{
+  "README.md": "2486352cd416d79ecdd80cda552bfcca8bd94d98fb1a42cfa87e7af0faecf025",
+  "AGENTS.md": "036cf85a2e7f32053d095c2d2391baf4efb519c046761f245d8b4df48e42faf6",
+  "scripts/shared-profile.js": "483524ac7b54e181630df559c71728281588ea06d6b77124966aed713a8f3976",
+  "templates/clash.example.yaml": "4058b182c074acca9456bd3d0e5239f960764f0f6be062a303fc583b7f25be55",
+  "docs/deployment.md": "17cbd4500d63bc2982cb31f7265012f6927e4acedf472712628054ca541d8f34",
+  "docs/discoverability.md": "ea1a2ddfb82c2af566ca4210d0aa9a4ff1b150732174a5f46c21ff88ab35af99",
+  "docs/faq.md": "b64f96bb540ba1c116d233e8044d93fe8b2bafc6c668a6e9542b669306635c4c",
+  "docs/isolation-verification.md": "5d5f4821e14fd64b3caf8a7a2e579690b07364014d6ac3bcf92d084676bf6090",
+  "docs/parameters.example.md": "8f16d434fa97a4efb6c0e85823b4da1508dd2472515fc57ff2b95a4d190553b9",
+  "docs/rebuild-runbook.md": "19b078a31734c7919511ad2d87f343d1982fb5d24dee4cda2909abef189d4773",
+  "docs/release-status.md": "f8e19645464acc2eb10bbbe19903ffc664405034ac71e6a2982130b49796e949",
+  "docs/verification.md": "b4971faaa417dd6ea831c98cec4e7430ac81c4d5ea558c24daaf0a4aff1af7fb"
+}

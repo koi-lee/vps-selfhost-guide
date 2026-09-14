@@ -1,0 +1,62 @@
+# VPS 自前プロキシ構築ガイド
+
+[简体中文](../README.md) · [English](README.en.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md) · [Français](README.fr.md)
+
+自分のサーバーと AI エージェントを使い、Hysteria2、VLESS、Clash Verge Rev を段階的に設定します。
+
+## 私が利用している VPS プロバイダー
+
+私は実際の環境で RackNerd を利用しています。このガイドを参考に、ご自身に合った構成を選んでください。
+
+**[RackNerd を見る・ガイドの継続更新を応援する](https://my.racknerd.com/aff.php?aff=21220)**
+
+*このリンク経由で購入すると、私に紹介料が支払われる場合があります。紹介料はガイドの保守と更新に役立てます。ご支援ありがとうございます！*
+
+## 対象と検証状況
+
+本リポジトリはガイドとサンプル設定です。ホスティングサービスやワンクリックインストーラーではありません。オフライン検証は完了していますが、新規 VPS での全工程の再現は未完了です。サーバー・ドメイン費用は利用者負担で、同じ通信速度は保証しません。
+
+このページは導入手順の翻訳です。リンク先の詳細文書は現在中国語で、保守上の原本です。エージェントに日本語で説明させてください。AI 支援による翻訳で、母語話者の校閲は未実施です。
+
+## エージェントへの依頼文
+
+> 最初に AGENTS.md、README.md、docs/ を読んで、日本語で説明してください。私自身のサーバーとアカウントを使います。予算、通信事業者、所在地、OS、ドメイン、IPv6 の利用可否を確認し、公式の最新バージョンと価格を調べてください。購入前には承認を得てください。既存サービスをバックアップし、SSH 接続を維持してください。まず HY2 を構築・検証し、その後に必要な VLESS/CDN、個人別設定、Clash Verge Rev を追加してください。秘密情報を表示せず、無関係なサービスを変更せず、未検証の項目は明記してください。
+
+## 構築の順序
+
+1. 更新料金、返金条件、転送量、UDP、IPv6 対応を比較します。混雑時間帯の実際の経路を試し、距離だけで判断しません。
+2. CPU アーキテクチャ、時刻、ポート、防火壁を確認します。自分のドメインの有効な証明書と一致する SNI を使用します。管理画面はループバックに限定し SSH トンネルで接続します。
+3. 独立した Hysteria サービスから始めます。テンプレートは単一パスワード方式です。利用者ごとの失効には、対応する認証方式と実測が必要です。
+4. Xray の VLESS/TLS を TCP 443、必要に応じ WebSocket/TLS を 8443 に追加します。CDN は厳格なオリジン TLS 検証を使い、HY2 UDP や Vision TCP を WebSocket 経路へ流しません。インストールした版に合う Xray JSON を生成・検証してから起動します。
+5. テンプレートの REPLACE_* をすべて置き換え、各利用者に専用の認証情報と YAML を渡します。自動サブスクリプションには、失効可能なトークンを持つ HTTPS 配布サービスの別途検証が必要です。
+6. Clash Verge Rev に設定を読み込み、拡張スクリプト欄に共通スクリプトを貼り付けて保存・適用します。購読更新はデータ取得、設定の有効化は適用です。
+7. 各経路、国内直結、海外 HTTPS、アップロード、再起動、復旧を検証します。TUN より先にシステムプロキシを試します。エラー回避のため証明書検証を無効にしないでください。
+
+## 共通スクリプトの動作
+
+UI 名は共通の `上网线路`（経路選択）と `自动切换（推荐）`（自動切替・推奨）を維持します。自動順序は HY2 → CDN → IPv4、IPv6 は手動、DIRECT は最後です。内部グループは非表示で、30 秒間隔・5 秒タイムアウトで検査します。切替は後続接続向けで、失敗済みリクエストはアプリ側の再試行が必要な場合があります。
+
+本リポジトリの基本テンプレート専用です。複雑な外部購読設定に上書きしないでください。グループとルールを再生成し、認証・TLS 設定は保持しますが、不審な購読設定を安全化する機能ではありません。中国向けサービスを直結する既定ルールは、自分の国・回線に合わせて見直してください。
+
+## 共通ファイルとオフライン検証
+
+- [AGENTS.md](../AGENTS.md)
+- [docs/parameters.example.md](../docs/parameters.example.md)
+- [docs/deployment.md](../docs/deployment.md)
+- [docs/rebuild-runbook.md](../docs/rebuild-runbook.md)
+- [docs/verification.md](../docs/verification.md)
+- [docs/faq.md](../docs/faq.md)
+- [templates/clash.example.yaml](../templates/clash.example.yaml)
+- [scripts/shared-profile.js](../scripts/shared-profile.js)
+- [SECURITY.md](../SECURITY.md)
+- [LICENSE](../LICENSE)
+
+以下のコマンドはリポジトリのルートで実行してください。
+
+```sh
+node --test tests/*.test.js
+python3 tests/check_docs.py
+python3 tests/check_i18n.py
+```
+
+[GitHub](https://github.com/koi-lee/vps-selfhost-guide) · [koi-lee](https://github.com/koi-lee)

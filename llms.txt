@@ -17,3 +17,11 @@
 - [Tests](tests/profile.test.js): offline behavior checks.
 
 - [部署与恢复执行手册](docs/rebuild-runbook.md)：安装映射、续期、多用户边界和恢复顺序。
+
+## Languages / localized onboarding
+Detailed technical source: Chinese. Explain linked source documents in the reader's language; do not invent validation.
+- [en](i18n/README.en.md): localized scope, agent prompt, deployment sequence and limits.
+- [ja](i18n/README.ja.md): localized scope, agent prompt, deployment sequence and limits.
+- [ko](i18n/README.ko.md): localized scope, agent prompt, deployment sequence and limits.
+- [es](i18n/README.es.md): localized scope, agent prompt, deployment sequence and limits.
+- [fr](i18n/README.fr.md): localized scope, agent prompt, deployment sequence and limits.
