@@ -12,11 +12,11 @@ Self-hosted proxy deployment guide for AI agents: VPS selection, Hysteria2, VLES
 
 ## 我使用的 VPS 服务商
 
-本教程作者使用 RackNerd 进行实际部署，你可以参考教程选择适合自己的配置。
+我这套配置用的是 RackNerd。你可以照着这份教程，按自己的预算和网络情况选服务器。
 
-**[查看 RackNerd，支持教程持续更新](https://my.racknerd.com/aff.php?aff=21220)**
+**[查看 RackNerd，支持我继续维护这份教程](https://my.racknerd.com/aff.php?aff=21220)**
 
-*通过支持链接购买，我可能获得佣金，用于支持教程维护与更新。感谢你的支持！*
+*如果你通过这个链接购买，我可能会获得佣金，用来维护和更新这份教程。谢谢支持！*
 
 ## 适合谁
 
@@ -80,7 +80,7 @@ python3 tests/check_i18n.py
 
 ## 反馈与持续更新
 
-欢迎试用！如果遇到步骤不清楚、配置报错或其他问题，欢迎 [提交 Issue](https://github.com/koi-lee/vps-selfhost-guide/issues)。请说明卡在哪一步、预期结果和实际现象，我会根据大家的反馈持续完善教程。
+欢迎试用！如果哪一步看不明白、配置报错，或者你有更好的做法，欢迎 [提交 Issue](https://github.com/koi-lee/vps-selfhost-guide/issues)。写清楚卡在哪一步、原本想得到什么结果、实际出现了什么，我会按反馈继续改。
 
 提交前请隐藏密码、密钥、订阅链接及截图中的个人信息。纠错、补充经验和分享教程，同样是对项目的支持。
 

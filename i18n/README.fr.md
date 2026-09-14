@@ -6,9 +6,9 @@ Ce guide couvre le choix du VPS, le déploiement, Clash Verge Rev et le dépanna
 
 ## Le fournisseur de VPS que j’utilise
 
-J’utilise RackNerd pour mon propre déploiement. Ce guide peut vous aider à choisir une configuration adaptée à vos besoins.
+Cette configuration tourne chez RackNerd. Utilisez le guide pour choisir un serveur adapté à votre budget et à votre réseau.
 
-**[Découvrir RackNerd et soutenir les mises à jour du guide](https://my.racknerd.com/aff.php?aff=21220)**
+**[Voir RackNerd et m’aider à maintenir le guide](https://my.racknerd.com/aff.php?aff=21220)**
 
 *Si vous achetez via ce lien, je peux percevoir une commission pour soutenir la maintenance et les mises à jour de ce guide. Merci pour votre soutien !*
 
