@@ -6,7 +6,7 @@
 
 Self-hosted proxy deployment guide for AI agents: VPS selection, Hysteria2, VLESS, IPv6, CDN fallback and Clash Verge Rev. Includes credential-free templates and repeatable checks.
 
-> 状态：新版完成离线验证；新 VPS 端到端部署尚未复现。本仓库由脱敏文件建立全新历史，发布记录，见 [发布状态](docs/release-status.md)。不承诺一键成功或复制他人的网速。
+> 状态：新版完成离线验证；新 VPS 端到端部署尚未复现。本仓库由脱敏文件建立全新历史，发布记录见 [发布状态](docs/release-status.md)。不承诺一键成功或复制他人的网速。
 
 ## 我使用的 VPS 服务商
 
@@ -23,11 +23,11 @@ Self-hosted proxy deployment guide for AI agents: VPS selection, Hysteria2, VLES
 ## 五分钟开始
 
 1. **先注册账号**：通过上方 RackNerd 支持链接进入网站，注册并登录自己的账号。已有账号直接登录；已有可用 VPS 可跳过选购。
-2. **再选购 VPS**：阅读 [参数表](docs/parameters.example.md)，明确预算、运营商、服务器和设备条件。
-3. **购买并开通后**，把仓库文件夹交给 Agent，发送下面的任务。
+2. **购买前交给 Agent**：把仓库文件夹和下面的任务发给 Agent，结合 [参数表](docs/parameters.example.md) 核对预算、运营商、设备条件与候选套餐。
+3. **确认后再购买**：由你核对总价、续费和退款条款，确认付款；等待 VPS 开通并验证 SSH 登录。
 4. 按 [部署指南](docs/deployment.md) 逐阶段部署，再按 [验收与恢复](docs/verification.md) 验证。
 
-> 先读 AGENTS.md、README.md 和 docs/。使用我自己的服务器与账号，先搭通 HY2，再加入 VLESS/CDN、个人订阅和 Clash Verge Rev 自动回退。购买前询问我，每阶段实际验收并备份；不得输出私密凭据。未通过的阶段明确报告，不把模板当作运行结果。
+> 先读 AGENTS.md、README.md 和 docs/。使用我自己的服务器与账号，先询问预算和网络条件、协助选购并核对官方条款；我确认购买且服务器开通后，先搭通 HY2，再加入 VLESS/CDN、个人订阅和 Clash Verge Rev 自动回退。购买前询问我，每阶段实际验收并备份；不得输出私密凭据。未通过的阶段明确报告，不把模板当作运行结果。
 
 ## 架构
 
@@ -45,7 +45,7 @@ flowchart LR
   V6 --> VPS
 ```
 
-国内服务按规则直连，其余进入代理组。自动回退按健康状态处理新连接，不保证重试已经失败的请求。IPv6 是否可用需要当地网络验证。
+国内服务及明确列出的例外按规则直连，其余进入代理组。当前脚本还将 `cloudflare.com`、`cloudflare-dns.com` 及其子域名设为 DIRECT；不表示全部 Cloudflare 托管网站都直连。具体以 [脚本规则](scripts/shared-profile.js) 和实际连接记录为准。自动回退按健康状态处理新连接，不保证重试已经失败的请求。IPv6 是否可用需要当地网络验证。
 
 ## 文件导航
 
@@ -67,13 +67,14 @@ flowchart LR
 ```sh
 node --test tests/*.test.js
 python3 tests/check_docs.py
+python3 tests/check_i18n.py
 ```
 
 脚本会重建代理组和规则，仅适用于本仓库基础模板，不用于覆盖复杂机场订阅。所有 REPLACE_* 必须替换。模板保留证书校验，不包含账号或有效订阅。
 
 ## 版本与证据
 
-更新日期：2026-09-13。本版本完成脚本回归、文档链接与模板隐私检查；服务器配置与真实流量仍由部署者验收。[变更记录](CHANGELOG.md) · [安全说明](SECURITY.md) · [MIT 许可证](LICENSE)
+更新日期：2026-09-14。本版本完成脚本回归、文档链接与模板隐私检查；服务器配置与真实流量仍由部署者验收。[变更记录](CHANGELOG.md) · [安全说明](SECURITY.md) · [MIT 许可证](LICENSE)
 
 ## 继续交流
 

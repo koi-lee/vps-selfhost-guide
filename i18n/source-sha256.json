@@ -1,14 +1,14 @@
 {
-  "README.md": "c1605905443010e25a3ab24128a4e5207cc217392405e7c8e1e8ac88f1c6952a",
-  "AGENTS.md": "036cf85a2e7f32053d095c2d2391baf4efb519c046761f245d8b4df48e42faf6",
+  "README.md": "5c6bd0bc0730ff31c4253aad0d3094de9e0335962d7a05e8c2c80b8ba21ef1d7",
+  "AGENTS.md": "7c50602cc3d3b6051d8618036e0a55c21c769d24107b55d8fb616e03b6a513a3",
   "scripts/shared-profile.js": "483524ac7b54e181630df559c71728281588ea06d6b77124966aed713a8f3976",
   "templates/clash.example.yaml": "4058b182c074acca9456bd3d0e5239f960764f0f6be062a303fc583b7f25be55",
-  "docs/deployment.md": "5d159f16c208a080785d5fc1f305c9893557a97db245bb28679681f91c53482d",
+  "docs/deployment.md": "718007f233833743a839179a0a41cdfec340b87ccbe23513e34ffe5ea0af9f8e",
   "docs/discoverability.md": "ea1a2ddfb82c2af566ca4210d0aa9a4ff1b150732174a5f46c21ff88ab35af99",
   "docs/faq.md": "b64f96bb540ba1c116d233e8044d93fe8b2bafc6c668a6e9542b669306635c4c",
   "docs/isolation-verification.md": "5d5f4821e14fd64b3caf8a7a2e579690b07364014d6ac3bcf92d084676bf6090",
   "docs/parameters.example.md": "8f16d434fa97a4efb6c0e85823b4da1508dd2472515fc57ff2b95a4d190553b9",
-  "docs/rebuild-runbook.md": "19b078a31734c7919511ad2d87f343d1982fb5d24dee4cda2909abef189d4773",
-  "docs/release-status.md": "f8e19645464acc2eb10bbbe19903ffc664405034ac71e6a2982130b49796e949",
+  "docs/rebuild-runbook.md": "ec8ba166d5492dd09a15ae33e33f8dc867756848074138efd04183cce25fa4ee",
+  "docs/release-status.md": "c0c3499040fc90a068b9c91d3d64840b3b2d3781cf21e908ab11e3e93cc94945",
   "docs/verification.md": "b4971faaa417dd6ea831c98cec4e7430ac81c4d5ea558c24daaf0a4aff1af7fb"
 }

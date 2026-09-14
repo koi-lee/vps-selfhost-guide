@@ -24,7 +24,7 @@ Esta página traduce las instrucciones esenciales de inicio. Los documentos deta
 
 ## Secuencia de despliegue
 
-Primero utiliza el enlace de apoyo a RackNerd de arriba para registrar tu propia cuenta e iniciar sesión. Si ya tienes cuenta, inicia sesión; si ya tienes un VPS adecuado, omite la compra. Registrar una cuenta no compra un servidor. Revisa el plan, autoriza el pago y espera a que se active el servicio antes de desplegar. Introduce tú mismo tus datos y mantén las credenciales privadas.
+Primero utiliza el enlace de apoyo a RackNerd de arriba para registrar tu propia cuenta e iniciar sesión. Si ya tienes cuenta, inicia sesión; si ya tienes un VPS adecuado, omite la compra. Registrar una cuenta no compra un servidor. Antes de elegir o pagar un plan, entrega el repositorio y la petición anterior al agente. Pídele comparar tus necesidades, precios actuales, renovación y reembolsos; después autoriza tú mismo el pago y espera la activación. Introduce tú mismo tus datos y mantén las credenciales privadas.
 
 1. Compara renovación, reembolsos, cuota de tráfico y compatibilidad con UDP e IPv6. Prueba la ruta real en horas punta: la distancia no garantiza calidad.
 2. Revisa arquitectura, hora, puertos y cortafuegos. Usa un certificado válido para tu dominio y un SNI coincidente. Mantén la administración en loopback mediante un túnel SSH.
@@ -41,6 +41,8 @@ Los identificadores compartidos son `上网线路` (selección de ruta) y `自�
 Úsalo solo con la plantilla básica de este repositorio, no sobre suscripciones complejas de terceros. Reemplaza grupos y reglas, conserva autenticación y TLS, y no sanea suscripciones no fiables. Las reglas predeterminadas favorecen conexiones directas a servicios chinos: revísalas según tu país y red.
 
 ## Archivos comunes y pruebas sin conexión
+
+Las excepciones DIRECT también incluyen cloudflare.com, cloudflare-dns.com y sus subdominios, no todos los sitios alojados en Cloudflare. Los secretos que solo lee su propietario usan 600. Los archivos gestionados por root que necesita vpsproxy usan root:vpsproxy, archivos 640 y directorios 750; verifica los miembros del grupo, el acceso a los directorios superiores y la lectura como usuario del servicio.
 
 - [AGENTS.md](../AGENTS.md)
 - [docs/parameters.example.md](../docs/parameters.example.md)

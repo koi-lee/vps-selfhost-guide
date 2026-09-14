@@ -24,7 +24,7 @@ This page translates the core onboarding instructions. The detailed documents li
 
 ## Deployment sequence
 
-First use the RackNerd support link above to register and sign in to your own account. Existing users can sign in directly; skip purchasing if you already have a suitable VPS. Account registration does not purchase a server. Review the plan, approve payment, and wait for provisioning before starting deployment. Enter account details yourself and keep credentials private.
+First use the RackNerd support link above to register and sign in to your own account. Existing users can sign in directly; skip purchasing if you already have a suitable VPS. Account registration does not purchase a server. Before choosing or paying for a plan, give this repository and the agent request above to your agent. Have it compare your needs, current prices, renewal and refund terms; only then approve payment yourself and wait for provisioning. Enter account details yourself and keep credentials private.
 
 1. Compare VPS renewal price, refund terms, traffic quota, UDP and IPv6 support. Test the actual route during peak hours; distance alone does not predict speed.
 2. Check architecture, ports, time and firewall. Use a valid certificate for your own domain and matching SNI. Keep administrative interfaces on loopback behind an SSH tunnel.
@@ -41,6 +41,8 @@ The UI keeps the shared identifiers `上网线路` (route selection) and `自动
 Use this script only with this repository’s basic template, not complex third-party subscriptions. It replaces groups and routing rules while retaining node credentials and TLS fields; it does not sanitize untrusted subscriptions. The routing defaults favor direct access to Chinese services; review them for your own country and network.
 
 ## Shared files and offline checks
+
+Explicit DIRECT exceptions also include cloudflare.com and cloudflare-dns.com and their subdomains, not all sites hosted by Cloudflare. For permissions, owner-only secrets default to 600; root-managed files needed by vpsproxy use root:vpsproxy, files 640 and directories 750. Verify group membership, parent-directory traversal and readability as the service user.
 
 - [AGENTS.md](../AGENTS.md)
 - [docs/parameters.example.md](../docs/parameters.example.md)

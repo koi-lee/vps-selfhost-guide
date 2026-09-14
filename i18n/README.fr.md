@@ -24,7 +24,7 @@ Cette page traduit les instructions essentielles de démarrage. Les documents d�
 
 ## Étapes de déploiement
 
-Commencez par le lien de soutien RackNerd ci-dessus pour créer votre propre compte et vous connecter. Si vous avez déjà un compte, connectez-vous ; si vous avez un VPS adapté, passez l’achat. Créer un compte ne commande pas de serveur. Vérifiez l’offre, autorisez le paiement et attendez l’activation avant le déploiement. Saisissez vous-même vos informations et gardez vos identifiants privés.
+Commencez par le lien de soutien RackNerd ci-dessus pour créer votre propre compte et vous connecter. Si vous avez déjà un compte, connectez-vous ; si vous avez un VPS adapté, passez l’achat. Créer un compte ne commande pas de serveur. Avant de choisir ou de payer une offre, transmettez le dépôt et la consigne ci-dessus à votre agent. Faites comparer vos besoins, les tarifs actuels, le renouvellement et les remboursements ; autorisez ensuite vous-même le paiement et attendez l’activation. Saisissez vous-même vos informations et gardez vos identifiants privés.
 
 1. Comparez les tarifs de renouvellement, remboursements, quotas de trafic et prises en charge UDP/IPv6. Testez le trajet réel aux heures de pointe : la distance ne suffit pas à prévoir la qualité.
 2. Vérifiez architecture, horloge, ports et pare-feu. Utilisez un certificat valide pour votre domaine avec un SNI correspondant. Gardez l’administration sur l’interface de bouclage via un tunnel SSH.
@@ -41,6 +41,8 @@ Les identifiants communs restent `上网线路` (sélection de route) et `自动
 Utilisez uniquement le modèle de base de ce dépôt, sans écraser un abonnement tiers complexe. Le script remplace groupes et règles, conserve les champs d’authentification et TLS, mais n’assainit pas les abonnements non fiables. Les règles par défaut privilégient l’accès direct aux services chinois ; adaptez leur examen à votre pays et réseau.
 
 ## Fichiers communs et contrôles hors ligne
+
+Les exceptions DIRECT comprennent aussi cloudflare.com, cloudflare-dns.com et leurs sous-domaines, mais pas tous les sites hébergés par Cloudflare. Les secrets lus uniquement par leur propriétaire utilisent 600. Les fichiers gérés par root et nécessaires à vpsproxy utilisent root:vpsproxy, les fichiers 640 et les répertoires 750 ; vérifiez les membres du groupe, la traversée des répertoires parents et la lecture par l’utilisateur du service.
 
 - [AGENTS.md](../AGENTS.md)
 - [docs/parameters.example.md](../docs/parameters.example.md)

@@ -13,7 +13,7 @@
 | hysteria.service / xray.service | /etc/systemd/system/ | daemon-reload 后先单独启动，确认再 enable |
 | 签发证书 | /etc/vps-tls/fullchain.pem、key.pem | 服务账户可读，域名匹配 |
 
-服务模板是 Linux systemd 专用，不能直接用于 Mac。先建立无登录权限的 vpsproxy 系统用户；程序由 root 管理，目录和证书对 vpsproxy 只读（目录 750、文件 640）。模板使用绑定低端口所需 capability，不授予其他权限。原有服务可能占用端口，先确认监听再启动，不能覆盖安装器已有 unit。模板不是已通过真机的安装脚本。
+服务模板是 Linux systemd 专用，不能直接用于 Mac。先建立无登录权限的 vpsproxy 系统用户；程序由 root 管理，服务目录、配置和证书由 root:vpsproxy 持有，对 vpsproxy 只读（目录 750、文件 640；父目录须可遍历，组内仅保留必要服务身份）。仅所有者读取的个人凭据文件仍用 600；启动前以实际服务用户检查所需文件可读。模板使用绑定低端口所需 capability，不授予其他权限。原有服务可能占用端口，先确认监听再启动，不能覆盖安装器已有 unit。模板不是已通过真机的安装脚本。
 
 ## Xray 版本差异
 
