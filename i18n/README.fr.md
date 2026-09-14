@@ -24,6 +24,8 @@ Cette page traduit les instructions essentielles de démarrage. Les documents d�
 
 ## Étapes de déploiement
 
+Commencez par le lien de soutien RackNerd ci-dessus pour créer votre propre compte et vous connecter. Si vous avez déjà un compte, connectez-vous ; si vous avez un VPS adapté, passez l’achat. Créer un compte ne commande pas de serveur. Vérifiez l’offre, autorisez le paiement et attendez l’activation avant le déploiement. Saisissez vous-même vos informations et gardez vos identifiants privés.
+
 1. Comparez les tarifs de renouvellement, remboursements, quotas de trafic et prises en charge UDP/IPv6. Testez le trajet réel aux heures de pointe : la distance ne suffit pas à prévoir la qualité.
 2. Vérifiez architecture, horloge, ports et pare-feu. Utilisez un certificat valide pour votre domaine avec un SNI correspondant. Gardez l’administration sur l’interface de bouclage via un tunnel SSH.
 3. Commencez par Hysteria autonome. Le modèle utilise un mot de passe unique ; une révocation indépendante par utilisateur exige une authentification compatible et des tests réels.

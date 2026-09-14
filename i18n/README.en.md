@@ -24,6 +24,8 @@ This page translates the core onboarding instructions. The detailed documents li
 
 ## Deployment sequence
 
+First use the RackNerd support link above to register and sign in to your own account. Existing users can sign in directly; skip purchasing if you already have a suitable VPS. Account registration does not purchase a server. Review the plan, approve payment, and wait for provisioning before starting deployment. Enter account details yourself and keep credentials private.
+
 1. Compare VPS renewal price, refund terms, traffic quota, UDP and IPv6 support. Test the actual route during peak hours; distance alone does not predict speed.
 2. Check architecture, ports, time and firewall. Use a valid certificate for your own domain and matching SNI. Keep administrative interfaces on loopback behind an SSH tunnel.
 3. Start with the standalone Hysteria service. The supplied template has one password; independent per-user revocation requires a supported authentication design and real tests.

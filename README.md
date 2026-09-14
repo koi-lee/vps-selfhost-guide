@@ -22,9 +22,10 @@ Self-hosted proxy deployment guide for AI agents: VPS selection, Hysteria2, VLES
 
 ## 五分钟开始
 
-1. 阅读 [参数表](docs/parameters.example.md)，明确预算、运营商、服务器和设备条件。
-2. 把仓库文件夹交给 Agent，发送下面的任务。
-3. 按 [部署指南](docs/deployment.md) 逐阶段部署，再按 [验收与恢复](docs/verification.md) 验证。
+1. **先注册账号**：通过上方 RackNerd 支持链接进入网站，注册并登录自己的账号。已有账号直接登录；已有可用 VPS 可跳过选购。
+2. **再选购 VPS**：阅读 [参数表](docs/parameters.example.md)，明确预算、运营商、服务器和设备条件。
+3. **购买并开通后**，把仓库文件夹交给 Agent，发送下面的任务。
+4. 按 [部署指南](docs/deployment.md) 逐阶段部署，再按 [验收与恢复](docs/verification.md) 验证。
 
 > 先读 AGENTS.md、README.md 和 docs/。使用我自己的服务器与账号，先搭通 HY2，再加入 VLESS/CDN、个人订阅和 Clash Verge Rev 自动回退。购买前询问我，每阶段实际验收并备份；不得输出私密凭据。未通过的阶段明确报告，不把模板当作运行结果。
 
