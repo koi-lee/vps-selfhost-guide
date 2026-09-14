@@ -6,8 +6,6 @@
 
 仓库仅提供示例配置，需要使用你自己的服务器和账号。
 
-Self-hosted proxy deployment guide for AI agents: VPS selection, Hysteria2, VLESS, IPv6, CDN fallback and Clash Verge Rev. Includes credential-free templates and repeatable checks.
-
 > 状态：新版完成离线验证；新 VPS 端到端部署尚未复现。本仓库由脱敏文件建立全新历史，发布记录见 [发布状态](docs/release-status.md)。不承诺一键成功或复制他人的网速。
 
 ## 我使用的 VPS 服务商
@@ -22,14 +20,14 @@ Self-hosted proxy deployment guide for AI agents: VPS selection, Hysteria2, VLES
 
 希望使用自己服务器的个人开发者、家庭用户，以及需要让 Agent 协助部署的读者。你需要自己的 VPS/域名、SSH 管理权限和客户端。软件模板可复用，服务器和域名费用由使用者自行承担。
 
-## 五分钟开始
+## 开始前先做这几件事
 
 1. **先注册账号**：通过上方 RackNerd 支持链接进入网站，注册并登录自己的账号。已有账号直接登录；已有可用 VPS 可跳过选购。
 2. **购买前交给 Agent**：把仓库文件夹和下面的任务发给 Agent，结合 [参数表](docs/parameters.example.md) 核对预算、运营商、设备条件与候选套餐。
 3. **确认后再购买**：由你核对总价、续费和退款条款，确认付款；等待 VPS 开通并验证 SSH 登录。
-4. 按 [部署指南](docs/deployment.md) 逐阶段部署，再按 [验收与恢复](docs/verification.md) 验证。
+4. 按 [部署指南](docs/deployment.md) 分步部署，再按 [验收与恢复](docs/verification.md) 验证。
 
-> 先读 AGENTS.md、README.md 和 docs/。使用我自己的服务器与账号，先询问预算和网络条件、协助选购并核对官方条款；我确认购买且服务器开通后，先搭通 HY2，再加入 VLESS/CDN、个人订阅和 Clash Verge Rev 自动回退。购买前询问我，每阶段实际验收并备份；不得输出私密凭据。未通过的阶段明确报告，不把模板当作运行结果。
+> 把仓库交给 Agent 时，让它先读 AGENTS.md、README.md 和 docs/，再询问预算、网络条件和服务器情况。购买由你自己确认；服务器开通后先搭 HY2，再按需加入 VLESS/CDN、个人订阅和 Clash Verge Rev，并在每一步备份和验收。不要把密码、密钥或订阅链接发到聊天里。
 
 ## 架构
 
@@ -57,7 +55,8 @@ flowchart LR
 | [docs/deployment.md](docs/deployment.md) | VPS 选购、系统、HY2、VLESS、CDN、订阅与客户端 |
 | [docs/parameters.example.md](docs/parameters.example.md) | 接收者自己的部署参数 |
 | [docs/verification.md](docs/verification.md) | 实测与恢复流程 |
-| [docs/faq.md](docs/faq.md) | 常见搜索问题与明确答案 |
+| [docs/rebuild-runbook.md](docs/rebuild-runbook.md) | 安装映射、续期、多用户边界和恢复顺序 |
+| [docs/faq.md](docs/faq.md) | 常见问题 |
 | [templates/clash.example.yaml](templates/clash.example.yaml) | 四节点占位配置 |
 | [scripts/shared-profile.js](scripts/shared-profile.js) | 自动组与国内分流脚本 |
 | [llms.txt](llms.txt) | Agent 内容索引 |
@@ -80,15 +79,11 @@ python3 tests/check_i18n.py
 
 ## 反馈与持续更新
 
-欢迎试用！如果哪一步看不明白、配置报错，或者你有更好的做法，欢迎 [提交 Issue](https://github.com/koi-lee/vps-selfhost-guide/issues)。写清楚卡在哪一步、原本想得到什么结果、实际出现了什么，我会按反馈继续改。
+如果哪一步看不明白、配置报错，或者你有更好的做法，欢迎 [提交 Issue](https://github.com/koi-lee/vps-selfhost-guide/issues)。写清楚卡在哪一步、原本想得到什么结果、实际出现了什么，我会按反馈继续改。
 
 提交前请隐藏密码、密钥、订阅链接及截图中的个人信息。纠错、补充经验和分享教程，同样是对项目的支持。
 
-☕ 如果教程帮到了你，欢迎 [自愿支持教程更新](SUPPORT.md)。教程免费开放，支持与否不影响使用和反馈问题。
-
 更多项目见 [koi-lee 的 GitHub 主页](https://github.com/koi-lee)。
-
-- [部署与恢复执行手册](docs/rebuild-runbook.md)：安装映射、续期、多用户边界和恢复顺序。
 
 ## 支持教程更新
 

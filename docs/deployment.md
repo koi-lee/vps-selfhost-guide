@@ -13,9 +13,9 @@
 ### 再选择套餐并确认购买
 
 
-购买前先把仓库文件夹和 README 中的任务交给 Agent，填写参数表。Agent 先查候选供应商官方价格和条款，不固定推荐过时促销。按接收者运营商选择可试用或退款的地区，优先测试真实线路；地理距离不等于网络质量。对比续费、退款、虚拟化类型、流量配额、IPv6、UDP 支持和使用条款。小规模个人使用可从 1 vCPU/1GB RAM 级别评估，面板资源需求以所选版本为准；无需为此购买大磁盘或多台服务器。
+购买前先把仓库文件夹和 README 中的任务交给 Agent，填写参数表。Agent 先查候选供应商官方价格和条款，不固定推荐过时促销。按你的运营商选择可试用或退款的地区，优先测试真实线路；地理距离不等于网络质量。对比续费、退款、虚拟化类型、流量配额、IPv6、UDP 支持和使用条款。小规模个人使用可从 1 vCPU/1GB RAM 级别评估，面板资源需求以所选版本为准；无需为此购买大磁盘或多台服务器。
 
-购买由接收者确认。试用期测试晚高峰、HTTPS 成功率、丢包和小文件下载；不达标先退款或更换线路，不靠叠加付费服务补救。结果填写本地验收记录。
+付款由你确认。试用期测试晚高峰、HTTPS 成功率、丢包和小文件下载；不达标先退款或更换线路，不靠叠加付费服务补救。结果填写本地验收记录。
 
 ### 开通后再部署
 
@@ -44,25 +44,25 @@
 - 出站使用正常直连出口；按官方配置文档生成配置文件，以安装版本的帮助信息确认配置检查命令，检查通过后启动 systemd 服务。
 - IPv4 与 IPv6 客户端节点使用同一 TCP 443 服务和用户；IPv6 节点服务器填自己的 IPv6 地址，TLS servername 仍填入口证书域名。
 
-CDN 使用受支持的 WebSocket/TLS 端口。以 Cloudflare 为例，使用自己的 `cdn.example.com` 橙云记录，Full (strict)，客户端和源站均用 8443；先核对 [代理端口](https://developers.cloudflare.com/fundamentals/reference/network-ports/) 与 [WebSocket 支持](https://developers.cloudflare.com/network/websockets/)。源站证书、SNI、Host 和 WS 路径必须一致。不要把 HY2 UDP 或 Vision TCP 当作普通 WebSocket 送入 CDN。本包不复制历史 Flexible/明文回源方案。
+CDN 使用受支持的 WebSocket/TLS 端口。以 Cloudflare 为例，使用自己的 `cdn.example.com` 橙云记录，Full (strict)，客户端和源站均用 8443；先核对 [代理端口](https://developers.cloudflare.com/fundamentals/reference/network-ports/) 与 [WebSocket 支持](https://developers.cloudflare.com/network/websockets/)。源站证书、SNI、Host 和 WS 路径必须一致。不要把 HY2 UDP 或 Vision TCP 当作普通 WebSocket 送入 CDN。这里固定使用 Full (strict) 和 TLS 加密回源，不使用 Flexible 或明文回源。
 
-分别验证 IPv4、IPv6、CDN 真实代理 HTTPS；CDN 返回 400 只能说明入口有响应，不能代替 VLESS 认证验收。失败的可选线路不要加入已交付可用列表。
+分别验证 IPv4、IPv6、CDN 真实代理 HTTPS；CDN 返回 400 只能说明入口有响应，不能代替 VLESS 认证验收。未通过验证的备用线路先不要启用。
 
 ## 5. 个人订阅
 
 每个人拥有独立密码/UUID和订阅 token。若当前面板支持外部节点聚合，用当前官方说明将 HY2 与独立 Xray 的 VLESS 节点聚合；UUID 必须已同步加入独立 Xray 服务端用户列表。撤销用户时同时撤销 HY2、独立 Xray 和订阅 token。
 
-如果面板没有可靠的聚合导出能力，先交付每人独立的本地 YAML 配置（无需订阅服务器），不要假装已经完成订阅。需要远程更新时另行配置 HTTPS 私密分发，关闭目录列表，使用不可猜测 token，避免记录完整 URL。令牌持有者可取配置，撤销和轮换必须可执行。
+如果面板没有可靠的聚合导出能力，先给每个人单独的本地 YAML 配置（无需订阅服务器）。这时提供的是手动配置，不是自动订阅；需要远程更新时另行配置 HTTPS 私密分发，关闭目录列表，使用不可猜测 token，避免记录完整 URL。令牌持有者可取配置，撤销和轮换必须可执行。
 
 ## 6. Clash Verge Rev
 
-从 [官方 Releases](https://github.com/clash-verge-rev/clash-verge-rev/releases) 安装对应系统/架构版本。导入接收者自己的订阅或填写后的 `templates/clash.example.yaml`。
+从 [官方 Releases](https://github.com/clash-verge-rev/clash-verge-rev/releases) 安装对应系统/架构版本。导入你自己的订阅或填写后的 `templates/clash.example.yaml`。
 
 将 `scripts/shared-profile.js` 完整粘贴到该配置的扩展脚本编辑器，全选覆盖旧内容后保存，重新应用该配置。不同版本按钮名称可能不同，以实际 UI 为准：更新订阅是重新拉取数据，使用/激活是应用配置；两者不要混淆。
 
 规则模式下应显示“上网线路”，第一项“自动切换（推荐）”，内部 fallback 隐藏，顺序 HY2 → CDN → IPv4；IPv6 只供手动选择；DIRECT 放最后。先开启系统代理验证浏览器，再按需求单独验证 TUN，避免其他 VPN 冲突。
 
-脚本只支持本包四节点角色和基础规则，不用于覆盖复杂机场分组。输入各角色最多一个节点，名称唯一；IPv6 节点使用 IPv6 字面地址。脚本保留原认证、证书和带宽字段，不修改服务端。
+脚本只支持这套模板的四节点角色和基础规则，不用于覆盖复杂机场分组。输入各角色最多一个节点，名称唯一；IPv6 节点使用 IPv6 字面地址。脚本保留原认证、证书和带宽字段，不修改服务端。
 
 国内常用域名与 GEOIP,CN 走 DIRECT；脚本另将 cloudflare.com、cloudflare-dns.com 及其子域名列为 DIRECT 例外，不代表所有 Cloudflare 托管网站直连。其余走上网线路。GeoIP 数据必须可用且更新；异常时检查实际连接规则，不凭域名归属想当然补规则。
 
@@ -72,6 +72,6 @@ CDN 使用受支持的 WebSocket/TLS 端口。以 Cloudflare 为例，使用自�
 
 不把别人的带宽参数、自签证书例外、运营商故障、控制 socket 路径照搬到新设备。自动回退只选后续连接的可用节点；已有失败请求可能仍需应用重试。
 
-每阶段按 [验收与恢复](verification.md) 留结果，再交付。
+每一步按 [验收与恢复](verification.md) 留结果，再决定是否继续。
 
-配置字段参考：[Mihomo HY2](https://wiki.metacubex.one/config/proxies/hysteria2/)。本包分享脚本不设置 HY2 up/down；需要调节时按接收者实际带宽核验。
+配置字段参考：[Mihomo HY2](https://wiki.metacubex.one/config/proxies/hysteria2/)。分享的脚本不设置 HY2 up/down；需要调节时按你的实际带宽核验。
