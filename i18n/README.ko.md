@@ -2,7 +2,7 @@
 
 [简体中文](../README.md) · [English](README.en.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md) · [Français](README.fr.md)
 
-자신의 서버와 AI 에이전트를 이용해 Hysteria2, VLESS, Clash Verge Rev를 단계별로 구성합니다.
+VPS 선택, 배포, Clash Verge Rev 설정과 문제 해결을 안내합니다. 에이전트가 README.md와 AGENTS.md를 먼저 읽고 본인의 네트워크와 서버에 맞춰 구축과 검증을 돕도록 하세요. 설정은 예제이며 본인의 서버와 계정을 사용해야 합니다.
 
 ## 제가 사용하는 VPS 업체
 
@@ -64,3 +64,11 @@ python3 tests/check_i18n.py
 ```
 
 [GitHub](https://github.com/koi-lee/vps-selfhost-guide) · [koi-lee](https://github.com/koi-lee)
+
+## 피드백과 업데이트
+
+불명확한 단계나 오류는 해당 단계, 예상 결과와 실제 동작을 Issue에 알려 주세요. 피드백을 바탕으로 개선하겠습니다. 비밀번호, 키, 구독 링크와 개인 정보는 먼저 삭제하세요.
+
+[Issue](https://github.com/koi-lee/vps-selfhost-guide/issues) · [가이드 업데이트 지원](../SUPPORT.md#ko)
+
+지원은 자율입니다. 가이드는 무료이며 지원 여부와 관계없이 피드백을 환영합니다.

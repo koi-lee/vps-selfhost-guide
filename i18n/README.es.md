@@ -2,7 +2,7 @@
 
 [简体中文](../README.md) · [English](README.en.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md) · [Français](README.fr.md)
 
-Configura Hysteria2, VLESS y Clash Verge Rev por etapas con tu servidor y un agente de IA.
+Esta guía cubre la elección del VPS, el despliegue, Clash Verge Rev y la resolución de problemas. Pide al agente leer README.md y AGENTS.md para adaptar la configuración y las pruebas a tu red y servidor. Usa tus propias cuentas y servidor; las configuraciones son ejemplos.
 
 ## El proveedor de VPS que utilizo
 
@@ -64,3 +64,11 @@ python3 tests/check_i18n.py
 ```
 
 [GitHub](https://github.com/koi-lee/vps-selfhost-guide) · [koi-lee](https://github.com/koi-lee)
+
+## Comentarios y actualizaciones
+
+Comunica pasos poco claros o errores mediante un Issue, indicando el paso, resultado esperado y comportamiento real. Mejoraré la guía con vuestros comentarios. Elimina contraseñas, claves, enlaces de suscripción y datos personales.
+
+[Issue](https://github.com/koi-lee/vps-selfhost-guide/issues) · [Apoyar la guía](../SUPPORT.md#es)
+
+El apoyo es voluntario. La guía sigue siendo gratuita y puedes enviar comentarios sin contribuir económicamente.

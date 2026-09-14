@@ -2,7 +2,9 @@
 
 [简体中文](README.md) · [English](i18n/README.en.md) · [日本語](i18n/README.ja.md) · [한국어](i18n/README.ko.md) · [Español](i18n/README.es.md) · [Français](i18n/README.fr.md)
 
-**让 AI Agent 按阶段帮你完成 VPS 选购、四节点配置、国内外分流与验收。**
+一份自建 VPS 代理教程，涵盖服务器选择、部署、Clash Verge Rev 配置与排障。让你的 AI Agent 先阅读 [README.md](README.md) 和 [AGENTS.md](AGENTS.md)，再根据你的网络条件与服务器情况，分阶段引导搭建和验证。
+
+仓库仅提供示例配置，需要使用你自己的服务器和账号。
 
 Self-hosted proxy deployment guide for AI agents: VPS selection, Hysteria2, VLESS, IPv6, CDN fallback and Clash Verge Rev. Includes credential-free templates and repeatable checks.
 
@@ -76,9 +78,15 @@ python3 tests/check_i18n.py
 
 更新日期：2026-09-14。本版本完成脚本回归、文档链接与模板隐私检查；服务器配置与真实流量仍由部署者验收。[变更记录](CHANGELOG.md) · [安全说明](SECURITY.md) · [MIT 许可证](LICENSE)
 
-## 继续交流
+## 反馈与持续更新
 
-更多项目见 [koi-lee 的 GitHub 主页](https://github.com/koi-lee)。如果这份指南帮你完成部署，可以收藏或分享给有相同需求的人；欢迎提交脱敏复现步骤、文档纠错和改进建议。请勿在 Issue 中贴订阅、密码、服务器日志中的 token 或私密截图。
+欢迎试用！如果遇到步骤不清楚、配置报错或其他问题，欢迎 [提交 Issue](https://github.com/koi-lee/vps-selfhost-guide/issues)。请说明卡在哪一步、预期结果和实际现象，我会根据大家的反馈持续完善教程。
+
+提交前请隐藏密码、密钥、订阅链接及截图中的个人信息。纠错、补充经验和分享教程，同样是对项目的支持。
+
+☕ 如果教程帮到了你，欢迎 [自愿支持教程更新](SUPPORT.md)。教程免费开放，支持与否不影响使用和反馈问题。
+
+更多项目见 [koi-lee 的 GitHub 主页](https://github.com/koi-lee)。
 
 - [部署与恢复执行手册](docs/rebuild-runbook.md)：安装映射、续期、多用户边界和恢复顺序。
 

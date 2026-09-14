@@ -6,6 +6,8 @@ errors = []
 for p in root.rglob('*'):
     if not p.is_file() or '.git' in p.parts or '__pycache__' in p.parts:
         continue
+    if p.suffix.lower() in {".jpg", ".jpeg", ".png", ".webp", ".gif"}:
+        continue  # Binary assets are reviewed separately; do not decode as UTF-8.
     text = p.read_text()
     if p.suffix == '.md' or p.name == 'llms.txt':
         for target in re.findall(r'\]\(([^\n)]+)\)', text):
