@@ -90,6 +90,15 @@ python3 tests/check_i18n.py
 
 - [部署与恢复执行手册](docs/rebuild-runbook.md)：安装映射、续期、多用户边界和恢复顺序。
 
+## 支持教程更新
+
+如果这份教程对你有帮助，欢迎自愿支持后续维护。教程免费开放，支持与否不影响使用和反馈问题。付款前请在支付 App 中核对收款人和金额。
+
+<a href="SUPPORT.md"><img src="assets/support/wechat.jpg" alt="微信收款码" width="220"></a>
+<a href="SUPPORT.md"><img src="assets/support/alipay.jpg" alt="支付宝收款码" width="220"></a>
+
+[查看大图和其他语言说明](SUPPORT.md)
+
 ## 多语言范围
 
 六种语言提供入口和核心操作指引；详细部署、恢复与验收文档目前以中文为维护源。其他语言可让 Agent 按原文解释，不代表所有文档已翻译。译文由 AI 辅助完成，尚未经过母语者校对。共用代码、占位符和代理组标识，不维护六套配置。默认分流面向中国网络，其他地区需核对路由策略。维护方式见 [翻译维护](i18n/MAINTENANCE.md)。
