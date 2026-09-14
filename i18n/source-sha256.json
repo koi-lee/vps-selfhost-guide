@@ -1,14 +1,14 @@
 {
-  "README.md": "9e4e5b450b57e8dad68e4c2d1564b59c4afcf7617ebbb541e95c9d5341edb067",
-  "AGENTS.md": "7c50602cc3d3b6051d8618036e0a55c21c769d24107b55d8fb616e03b6a513a3",
+  "README.md": "6a27a474cb4c82a42b0b2a83e4f6c7cee5ab87c273a68b5b82847612c7aee30f",
+  "AGENTS.md": "346a38109f403995e3fc0b3579b3ae83da778bf42767668305a3ef578ea38c8c",
   "scripts/shared-profile.js": "483524ac7b54e181630df559c71728281588ea06d6b77124966aed713a8f3976",
   "templates/clash.example.yaml": "4058b182c074acca9456bd3d0e5239f960764f0f6be062a303fc583b7f25be55",
-  "docs/deployment.md": "74b1aefd54a4cadb32232b2e7a5f991e827426f5eea54414557bee06b02c26ce",
-  "docs/discoverability.md": "ea1a2ddfb82c2af566ca4210d0aa9a4ff1b150732174a5f46c21ff88ab35af99",
+  "docs/deployment.md": "485cf2bc97dac35ee0c5eb871b8decf210486ab7ac8d2be83fa2f7957035649e",
+  "docs/discoverability.md": "37a82d51d1a43938526a08403c586d3c97dd550fe65973d944e8c30058cc3f3f",
   "docs/faq.md": "b86dded8e21b3f06a37f395799ea26554537ff99c8406775e5e27f108974986a",
   "docs/isolation-verification.md": "5d5f4821e14fd64b3caf8a7a2e579690b07364014d6ac3bcf92d084676bf6090",
   "docs/parameters.example.md": "8f16d434fa97a4efb6c0e85823b4da1508dd2472515fc57ff2b95a4d190553b9",
-  "docs/rebuild-runbook.md": "ec8ba166d5492dd09a15ae33e33f8dc867756848074138efd04183cce25fa4ee",
+  "docs/rebuild-runbook.md": "2f75034afe0ec6a5e0b48a8d19d2df7d5c7c0e6062d997c0f4e1349533596bf6",
   "docs/release-status.md": "c0c3499040fc90a068b9c91d3d64840b3b2d3781cf21e908ab11e3e93cc94945",
-  "docs/verification.md": "b4971faaa417dd6ea831c98cec4e7430ac81c4d5ea558c24daaf0a4aff1af7fb"
+  "docs/verification.md": "9eb7de2db110fe7d9cbe3625f02d2eb10e57d1958e4f5301996c856777bf83ab"
 }

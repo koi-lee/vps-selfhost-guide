@@ -4,7 +4,7 @@
 
 仓库公开后才可能被搜索引擎发现；不承诺 Google、Bing、百度或 Agent 收录、排名或引用。
 
-GitHub 仓库不能通过放一个 robots.txt 来控制 github.com 的爬虫规则，也不能在 Markdown 中自行控制 GitHub 页面的 HTML meta/canonical。故不添加假装生效的 robots、sitemap 或 JSON-LD。本次没有部署独立站或 GitHub Pages。如将来建独立站，再针对真实域名设置这些文件及站长工具。
+GitHub 仓库页面本身不能通过仓库内的 robots.txt 控制 github.com 的爬虫规则，也不能在 Markdown 中自行控制 GitHub 页面 HTML 的 meta/canonical。引流静态站已部署到 GitHub Pages，并针对真实地址配置了页面 meta、canonical、robots.txt、sitemap.xml 和 llms.txt；这些设置只作用于静态站，不改变 GitHub 仓库页面。
 
 llms.txt 是便于工具读取的索引约定，不是通用搜索收录协议；GEO 不涉及 GPU 加速。Google 说明其 AI 搜索功能仍遵循基础 SEO，没有专用 AI 标记要求。
 

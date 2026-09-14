@@ -51,9 +51,9 @@ flowchart LR
 
 | 入口 | 内容 |
 |---|---|
-| [AGENTS.md](AGENTS.md) | Agent 执行边界、阶段与交付标准 |
+| [AGENTS.md](AGENTS.md) | Agent 执行边界、部署阶段与验收标准 |
 | [docs/deployment.md](docs/deployment.md) | VPS 选购、系统、HY2、VLESS、CDN、订阅与客户端 |
-| [docs/parameters.example.md](docs/parameters.example.md) | 接收者自己的部署参数 |
+| [docs/parameters.example.md](docs/parameters.example.md) | 使用者自己的部署参数 |
 | [docs/verification.md](docs/verification.md) | 实测与恢复流程 |
 | [docs/rebuild-runbook.md](docs/rebuild-runbook.md) | 安装映射、续期、多用户边界和恢复顺序 |
 | [docs/faq.md](docs/faq.md) | 常见问题 |
