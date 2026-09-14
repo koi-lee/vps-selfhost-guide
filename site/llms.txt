@@ -1,0 +1,7 @@
+# VPS self-hosting guide landing page
+> Static introduction and navigation for https://github.com/koi-lee/vps-selfhost-guide.
+
+- Full guide: https://github.com/koi-lee/vps-selfhost-guide
+- Agent contract: https://github.com/koi-lee/vps-selfhost-guide/blob/main/AGENTS.md
+- Machine-readable index: https://github.com/koi-lee/vps-selfhost-guide/blob/main/llms.txt
+- Scope: examples and documentation only; no credentials, nodes, subscriptions, or managed service.
