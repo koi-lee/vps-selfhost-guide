@@ -92,7 +92,7 @@ python3 tests/check_i18n.py
 
 ## 支持教程更新
 
-如果这份教程对你有帮助，欢迎自愿支持后续维护。教程免费开放，支持与否不影响使用和反馈问题。付款前请在支付 App 中核对收款人和金额。
+如果这份教程对你有帮助，欢迎自愿支持后续维护。教程免费开放，支持与否不影响使用和反馈问题。扫码后按支付 App 的提示完成即可。
 
 <a href="SUPPORT.md"><img src="assets/support/wechat.jpg" alt="微信收款码" width="220"></a>
 <a href="SUPPORT.md"><img src="assets/support/alipay.jpg" alt="支付宝收款码" width="220"></a>
