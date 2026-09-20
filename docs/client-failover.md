@@ -18,7 +18,7 @@
 
 v16 保留一个可见的「上网方式」选择组，按推荐、日本、直连排列；故障切换、测速池和直连包装组设为隐藏。后台检测保持 lazy=false，健康检测参数、跨订阅候选和国内 DNS 不变。本次不修改 Clash Verge 二进制；协议标签和工具栏图标仍是客户端原生界面。手动选择单条自有线路不再出现在日常入口；如需排障可恢复 v15 后查看全部组。
 
-核对了 Clash Verge Rev v2.5.2 的 [use-head-state.ts](https://github.com/clash-verge-rev/clash-verge-rev/blob/v2.5.2/src/components/proxy/use-head-state.ts) 与 [use-filter-sort.ts](https://github.com/clash-verge-rev/clash-verge-rev/blob/v2.5.2/src/components/proxy/use-filter-sort.ts)：排序偏好按订阅和组名存储，默认按配置顺序显示。因此新入口使用语义更明确的「上网方式」，初始展示顺序不受旧「上网线路」的测速排序影响。用户之后仍可自行改排序。
+核对了 Clash Verge Rev v2.5.2 的 [use-head-state.ts](https://github.com/clash-verge-rev/clash-verge-rev/blob/v2.5.2/src/components/proxy/use-head-state.ts) 与 [use-filter-sort.ts](https://github.com/clash-verge-rev/clash-verge-rev/blob/v2.5.2/src/components/proxy/use-filter-sort.ts)：排序偏好按订阅和组名存储，默认按配置顺序显示。因此新入口使用语义更明确的「上网方式」，初始展示顺序不受旧「上网线路」的测速排序影响。用户之后仍可自行改排序。lizean 的手动入口只包含它自身下发的 4 条线路；新、旧订阅的手动入口包含各自订阅下发的多国节点。
 
 ## 2026-09-20 验证
 

@@ -8,4 +8,4 @@ assert.ok(c.rules.includes('GEOSITE,cn,DIRECT'));assert.ok(c.rules.includes('DOM
 assert.equal(gs.find(g=>g.name==='直连上网（不经代理）').proxies[0],'DIRECT');
 const snapshot=JSON.stringify(c);assert.equal(JSON.stringify(ctx.main(c)),snapshot);
 const noJp=ctx.main({proxies:[{name:'hy',type:'hysteria2'}],'proxy-groups':[{name:'PROXY',type:'select',proxies:['hy']}],rules:['MATCH,PROXY']});assert.equal(noJp['proxy-groups'][0].proxies.length,3);
-console.log('PASS: one visible entry, three choices, fallback order, hidden active checks, direct mode, rule aliases, idempotence and no-provider case');
+console.log('PASS: purpose entry, four choices including manual nodes, fallback order, hidden active checks, direct mode, rule aliases, idempotence and no-provider case');
