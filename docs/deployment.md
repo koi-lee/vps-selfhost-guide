@@ -60,11 +60,11 @@ CDN 使用受支持的 WebSocket/TLS 端口。以 Cloudflare 为例，使用自�
 
 将 `scripts/shared-profile.js` 完整粘贴到该配置的扩展脚本编辑器，全选覆盖旧内容后保存，重新应用该配置。不同版本按钮名称可能不同，以实际 UI 为准：更新订阅是重新拉取数据，使用/激活是应用配置；两者不要混淆。
 
-规则模式下应显示“上网线路”，第一项“自动切换（推荐）”，内部 fallback 隐藏，顺序 HY2 → CDN → IPv4；IPv6 只供手动选择；DIRECT 放最后。先开启系统代理验证浏览器，再按需求单独验证 TUN，避免其他 VPN 冲突。
+规则模式下应显示“上网线路”，第一项“自动切换（推荐）”，内部 fallback 可见，顺序 HY2 → CDN → IPv4；IPv6 只供手动选择；DIRECT 放最后。先开启系统代理验证浏览器，再按需求单独验证 TUN，避免其他 VPN 冲突。
 
 脚本只支持这套模板的四节点角色和基础规则，不用于覆盖复杂机场分组。输入各角色最多一个节点，名称唯一；IPv6 节点使用 IPv6 字面地址。脚本保留原认证、证书和带宽字段，不修改服务端。
 
-国内常用域名与 GEOIP,CN 走 DIRECT；脚本另将 cloudflare.com、cloudflare-dns.com 及其子域名列为 DIRECT 例外，不代表所有 Cloudflare 托管网站直连。其余走上网线路。GeoIP 数据必须可用且更新；异常时检查实际连接规则，不凭域名归属想当然补规则。
+国内显式域名、GEOSITE,cn 与 GEOIP,CN 走 DIRECT；脚本另将 cloudflare.com、cloudflare-dns.com 及其子域名列为 DIRECT 例外，不代表所有 Cloudflare 托管网站直连。其余走上网线路。GeoSite 和 GeoIP 数据必须可用且更新；异常时检查实际连接规则，不凭域名归属想当然补规则。
 
 ## 7. 性能与日常维护
 
@@ -75,3 +75,7 @@ CDN 使用受支持的 WebSocket/TLS 端口。以 Cloudflare 为例，使用自�
 每一步按 [验收与恢复](verification.md) 留结果，再决定是否继续。
 
 配置字段参考：[Mihomo HY2](https://wiki.metacubex.one/config/proxies/hysteria2/)。分享的脚本不设置 HY2 up/down；需要调节时按你的实际带宽核验。
+
+## 8. 海外故障与国内访问独立
+
+自动检测间隔为 15 秒，超时 5 秒，不能承诺在 15 秒内恢复。按需配置 [跨订阅日本备用与直连 DNS](client-failover.md)；没有备用订阅时保留原三线路。Clash Verge 全局 DNS 覆写可能覆盖脚本设置，须核对最终运行配置。

@@ -36,7 +36,7 @@ Commencez par le lien de soutien RackNerd ci-dessus pour créer votre propre com
 
 ## Fonctionnement du script
 
-Les identifiants communs restent `上网线路` (sélection de route) et `自动切换（推荐）` (basculement automatique recommandé). L’ordre automatique est HY2 → CDN → IPv4 ; IPv6 reste manuel et DIRECT est placé en dernier. Le groupe interne est masqué. Les contrôles ont lieu toutes les 30 secondes avec un délai maximal de 5 secondes. Le basculement concerne les connexions suivantes ; une requête déjà échouée peut nécessiter une nouvelle tentative dans l’application.
+Les identifiants communs restent `上网线路` (sélection de route) et `自动切换（推荐）` (basculement automatique recommandé). L’ordre automatique est HY2 → CDN → IPv4 ; IPv6 reste manuel et DIRECT est placé en dernier. Le groupe interne est visible. Les contrôles ont lieu toutes les 15 secondes avec un délai maximal de 5 secondes. Le basculement concerne les connexions suivantes ; une requête déjà échouée peut nécessiter une nouvelle tentative dans l’application.
 
 Utilisez uniquement le modèle de base de ce dépôt, sans écraser un abonnement tiers complexe. Le script remplace groupes et règles, conserve les champs d’authentification et TLS, mais n’assainit pas les abonnements non fiables. Les règles par défaut privilégient l’accès direct aux services chinois ; adaptez leur examen à votre pays et réseau.
 
@@ -72,3 +72,5 @@ Signalez les étapes peu claires ou les erreurs dans une Issue, avec l’étape,
 [Issue](https://github.com/koi-lee/vps-selfhost-guide/issues) · [Soutenir le guide](../SUPPORT.md#fr)
 
 Le soutien est facultatif. Le guide reste gratuit et vos retours sont les bienvenus, avec ou sans contribution financière.
+
+Les abonnements de secours japonais facultatifs et le DNS direct pour les sites chinois sont décrits dans le [guide de basculement](../docs/client-failover.md). Utilisez vos propres paramètres privés ; 15 secondes est un intervalle de contrôle, pas un délai de rétablissement garanti.

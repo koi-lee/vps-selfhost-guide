@@ -1,0 +1,23 @@
+# 将 dns 下字段合并到实际 DNS 设置；保留现有 Fake-IP/TUN 配置，不整文件覆盖。
+dns:
+  enable: true
+  default-nameserver:
+  - 223.5.5.5
+  - 119.29.29.29
+  nameserver:
+  - https://doh.pub/dns-query#DIRECT
+  - https://dns.alidns.com/dns-query#DIRECT
+  direct-nameserver:
+  - https://doh.pub/dns-query#DIRECT
+  - https://dns.alidns.com/dns-query#DIRECT
+  direct-nameserver-follow-policy: false
+  proxy-server-nameserver:
+  - https://doh.pub/dns-query#DIRECT
+  - https://dns.alidns.com/dns-query#DIRECT
+  nameserver-policy:
+    geosite:cn:
+    - https://doh.pub/dns-query#DIRECT
+    - https://dns.alidns.com/dns-query#DIRECT
+    +.cn:
+    - https://doh.pub/dns-query#DIRECT
+    - https://dns.alidns.com/dns-query#DIRECT

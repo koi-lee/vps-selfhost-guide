@@ -1,0 +1,28 @@
+# 可选私有覆写示例：先替换地址，只保留实际拥有的订阅。不要公开填写后的文件。
+proxy-providers:
+  japan-primary:
+    type: http
+    url: https://subscription.example.com/REPLACE_JAPAN_PRIMARY_TOKEN
+    path: ./providers/japan-primary.yaml
+    interval: 43200
+    proxy: DIRECT
+    filter: 日本|(?i:Japan|\bJP\b)|🇯🇵
+    override:
+      additional-prefix: 'A | '
+    health-check: &id001
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 15
+      timeout: 5000
+      lazy: false
+      expected-status: '204'
+  japan-secondary:
+    type: http
+    url: https://subscription.example.com/REPLACE_JAPAN_SECONDARY_TOKEN
+    path: ./providers/japan-secondary.yaml
+    interval: 43200
+    proxy: DIRECT
+    filter: 日本|(?i:Japan|\bJP\b)|🇯🇵
+    override:
+      additional-prefix: 'B | '
+    health-check: *id001

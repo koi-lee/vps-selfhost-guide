@@ -36,7 +36,7 @@ First use the RackNerd support link above to register and sign in to your own ac
 
 ## What the script does
 
-The UI keeps the shared identifiers `上网线路` (route selection) and `自动切换（推荐）` (automatic fallback, recommended). Automatic order is HY2 → CDN → IPv4; IPv6 remains manual and DIRECT is last. The internal group is hidden. Health checks run every 30 seconds with a 5-second timeout. Fallback handles subsequent connections; failed requests may need application retries.
+The UI keeps the shared identifiers `上网线路` (route selection) and `自动切换（推荐）` (automatic fallback, recommended). Automatic order is HY2 → CDN → IPv4; IPv6 remains manual and DIRECT is last. The internal group is visible. Health checks run every 15 seconds with a 5-second timeout. Fallback handles subsequent connections; failed requests may need application retries.
 
 Use this script only with this repository’s basic template, not complex third-party subscriptions. It replaces groups and routing rules while retaining node credentials and TLS fields; it does not sanitize untrusted subscriptions. The routing defaults favor direct access to Chinese services; review them for your own country and network.
 
@@ -72,3 +72,5 @@ Please report unclear steps or errors in an Issue, including the step, expected 
 [Issue](https://github.com/koi-lee/vps-selfhost-guide/issues) · [Support this guide](../SUPPORT.md#en)
 
 Support is optional. The guide remains free, and feedback is welcome whether or not you contribute.
+
+Optional Japanese backup subscriptions and independent domestic DNS are described in the [client failover guide](../docs/client-failover.md). Fill in your own private provider settings; the 15-second interval is not a recovery deadline.

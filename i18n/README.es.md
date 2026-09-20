@@ -36,7 +36,7 @@ Primero utiliza el enlace de apoyo a RackNerd de arriba para registrar tu propia
 
 ## Comportamiento del script
 
-Los identificadores compartidos son `上网线路` (selección de ruta) y `自动切换（推荐）` (conmutación automática recomendada). El orden automático es HY2 → CDN → IPv4; IPv6 es manual y DIRECT queda al final. El grupo interno se oculta. Las comprobaciones se realizan cada 30 segundos con un límite de 5 segundos. La conmutación afecta a conexiones posteriores; las solicitudes fallidas pueden requerir reintento en la aplicación.
+Los identificadores compartidos son `上网线路` (selección de ruta) y `自动切换（推荐）` (conmutación automática recomendada). El orden automático es HY2 → CDN → IPv4; IPv6 es manual y DIRECT queda al final. El grupo interno es visible. Las comprobaciones se realizan cada 15 segundos con un límite de 5 segundos. La conmutación afecta a conexiones posteriores; las solicitudes fallidas pueden requerir reintento en la aplicación.
 
 Úsalo solo con la plantilla básica de este repositorio, no sobre suscripciones complejas de terceros. Reemplaza grupos y reglas, conserva autenticación y TLS, y no sanea suscripciones no fiables. Las reglas predeterminadas favorecen conexiones directas a servicios chinos: revísalas según tu país y red.
 
@@ -72,3 +72,5 @@ Comunica pasos poco claros o errores mediante un Issue, indicando el paso, resul
 [Issue](https://github.com/koi-lee/vps-selfhost-guide/issues) · [Apoyar la guía](../SUPPORT.md#es)
 
 El apoyo es voluntario. La guía sigue siendo gratuita y puedes enviar comentarios sin contribuir económicamente.
+
+Consulta la [guía de conmutación](../docs/client-failover.md) para añadir suscripciones japonesas de respaldo opcionales y DNS directo para sitios chinos. Usa tus propios ajustes privados; el intervalo de 15 segundos no garantiza el tiempo de recuperación.

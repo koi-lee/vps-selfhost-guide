@@ -11,11 +11,21 @@ function main(config) {
   const auto = [...hy, ...ws, ...v4].map(p => p.name);
   if (!auto.length) throw new Error('缺少可自动回退的节点');
   const names = new Set(ps.map(p => p.name));
-  if (['上网线路','自动切换（推荐）','DIRECT'].some(n => names.has(n))) throw new Error('节点名与代理组冲突');
+  if (['上网线路','自动切换（推荐）','日本低延迟（跨订阅）','DIRECT'].some(n => names.has(n))) throw new Error('节点名与代理组冲突');
   config['proxy-groups'] = [
     {name:'上网线路', type:'select', proxies:['自动切换（推荐）', ...hy.map(p=>p.name), ...v6.map(p=>p.name), ...ws.map(p=>p.name), ...v4.map(p=>p.name), ...ps.filter(p=>![...hy,...ws,...v4,...v6].includes(p)).map(p=>p.name), 'DIRECT']},
-    {name:'自动切换（推荐）', type:'fallback', hidden:true, proxies:auto, url:'https://www.gstatic.com/generate_204', interval:30, timeout:5000, 'max-failed-times':2, 'expected-status':204, lazy:false}
+    {name:'自动切换（推荐）', type:'fallback', hidden:false, proxies:auto, url:'https://www.gstatic.com/generate_204', interval:15, timeout:5000, 'max-failed-times':2, 'expected-status':204, lazy:false}
   ];
+  // 仅引用使用者在私有覆写配置中明确启用的 provider。
+  const providers = config['proxy-providers'] || {};
+  const sources = ['japan-primary', 'japan-secondary'].filter(name => providers[name]);
+  if (sources.length) {
+    config['proxy-groups'][1].proxies.push('日本低延迟（跨订阅）');
+    config['proxy-groups'].push({name:'日本低延迟（跨订阅）', type:'url-test', use:sources,
+      filter:'日本|(?i:Japan|\\bJP\\b)|🇯🇵', url:'https://www.gstatic.com/generate_204',
+      interval:15, timeout:5000, 'expected-status':204, lazy:false, tolerance:50,
+      'empty-fallback':'REJECT'});
+  }
   const directRules = [
   "DOMAIN-SUFFIX,workbuddy.cn,DIRECT",
   "DOMAIN-SUFFIX,codebuddy.cn,DIRECT",
@@ -108,8 +118,40 @@ function main(config) {
   "DOMAIN-SUFFIX,xiaomi.com,DIRECT",
   "DOMAIN-SUFFIX,12306.cn,DIRECT",
   "DOMAIN-SUFFIX,icloud.com.cn,DIRECT",
+  "DOMAIN-SUFFIX,gov.cn,DIRECT",
+  "DOMAIN-SUFFIX,sogou.com,DIRECT",
+  "DOMAIN-SUFFIX,sogoucdn.com,DIRECT",
+  "DOMAIN-SUFFIX,so.com,DIRECT",
+  "DOMAIN-SUFFIX,360.cn,DIRECT",
+  "DOMAIN-SUFFIX,qhupdate.com,DIRECT",
+  "DOMAIN-SUFFIX,sm.cn,DIRECT",
+  "DOMAIN-SUFFIX,quark.cn,DIRECT",
+  "DOMAIN-SUFFIX,bdimg.com,DIRECT",
+  "DOMAIN-SUFFIX,baidustatic.com,DIRECT",
+  "DOMAIN-SUFFIX,cntv.cn,DIRECT",
+  "DOMAIN-SUFFIX,acfun.cn,DIRECT",
+  "DOMAIN-SUFFIX,migu.cn,DIRECT",
+  "DOMAIN-SUFFIX,miguvideo.com,DIRECT",
+  "DOMAIN-SUFFIX,douyu.com,DIRECT",
+  "DOMAIN-SUFFIX,douyucdn.cn,DIRECT",
+  "DOMAIN-SUFFIX,huya.com,DIRECT",
+  "DOMAIN-SUFFIX,msstatic.com,DIRECT",
+  "DOMAIN-SUFFIX,douban.com,DIRECT",
+  "DOMAIN-SUFFIX,doubanio.com,DIRECT",
+  "DOMAIN-SUFFIX,jianshu.com,DIRECT",
+  "DOMAIN-SUFFIX,jianshu.io,DIRECT",
+  "GEOSITE,private,DIRECT",
+  "GEOSITE,cn,DIRECT",
   "GEOIP,CN,DIRECT"
 ];
   config.rules = [...new Set(directRules.filter(r => !r.startsWith('GEOIP'))), 'GEOIP,CN,DIRECT', 'MATCH,上网线路'];
+  const directDns = ['https://doh.pub/dns-query#DIRECT', 'https://dns.alidns.com/dns-query#DIRECT'];
+  const dns = config.dns || {};
+  config.dns = {...dns, enable:true,
+    nameserver:dns.nameserver || directDns,
+    'default-nameserver':['223.5.5.5','119.29.29.29'],
+    'direct-nameserver':directDns, 'direct-nameserver-follow-policy':false,
+    'proxy-server-nameserver':directDns,
+    'nameserver-policy':{...(dns['nameserver-policy'] || {}), 'geosite:cn':directDns, '+.cn':directDns}};
   return config;
 }

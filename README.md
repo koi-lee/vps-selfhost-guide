@@ -57,6 +57,7 @@ flowchart LR
 | [docs/verification.md](docs/verification.md) | 实测与恢复流程 |
 | [docs/rebuild-runbook.md](docs/rebuild-runbook.md) | 安装映射、续期、多用户边界和恢复顺序 |
 | [docs/faq.md](docs/faq.md) | 常见问题 |
+| [docs/client-failover.md](docs/client-failover.md) | 跨订阅备用、国内 DNS 和故障验收 |
 | [templates/clash.example.yaml](templates/clash.example.yaml) | 四节点占位配置 |
 | [scripts/shared-profile.js](scripts/shared-profile.js) | 自动组与国内分流脚本 |
 | [llms.txt](llms.txt) | Agent 内容索引 |
