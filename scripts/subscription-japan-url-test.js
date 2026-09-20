@@ -25,12 +25,12 @@ function main(config) {
   groups.unshift({
     name: '上网方式',
     type: 'select',
-    proxies: ['日本上网（自动测速）', '手动选择节点（全部国家）', 'DIRECT'],
+    proxies: ['日本上网（自动测速）', '切换到手动节点（展开选择）', 'DIRECT'],
     'default-selected': '日本上网（自动测速）',
     hidden: false
   });
   groups.push({
-    name: '手动选择节点（全部国家）',
+    name: '切换到手动节点（展开选择）',
     type: 'select',
     proxies: allNames,
     'default-selected': allNames[0],
