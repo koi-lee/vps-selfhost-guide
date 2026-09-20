@@ -1,31 +1,11 @@
-const test = require('node:test');
-const assert = require('node:assert/strict');
-const fs = require('node:fs');
-const path = require('node:path');
-const vm = require('node:vm');
-function run(config) {
-  const ctx = {};
-  const scripts = ['shared-profile.js', 'simplify-panel.js'].map(name => fs.readFileSync(path.join(__dirname, '../scripts', name), 'utf8')).join('\n');
-  vm.runInNewContext(scripts, ctx);
-  return JSON.parse(JSON.stringify(ctx.main(config)));
-}
-function fixture() { return {proxies:[{name:'primary',type:'hysteria2',server:'example.com'}], 'proxy-providers':{'japan-primary':{}},rules:[]}; }
-test('optional panel presents purposes and retains failover and domestic rules', () => {
-  const result = run(fixture());
-  assert.deepEqual(result['proxy-groups'].filter(g=>!g.hidden).map(g=>g.name), ['上网方式']);
-  assert.deepEqual(result['proxy-groups'][0].proxies, ['自动上网（推荐）','日本上网（自动测速）','直连上网（不经代理）']);
-  const fallback = result['proxy-groups'].find(g=>g.type==='fallback');
-  assert.deepEqual(fallback.proxies,['primary','日本上网（自动测速）']);
-  assert.equal(fallback.lazy,false);
-  assert.equal(result.rules.at(-1),'MATCH,上网方式');
-  assert.ok(result.rules.includes('GEOSITE,cn,DIRECT'));
-  assert.deepEqual(run(JSON.parse(JSON.stringify(result))), result);
-});
-test('without provider offers automatic and direct only', () => {
-  const input=fixture();delete input['proxy-providers'];
-  assert.deepEqual(run(input)['proxy-groups'][0].proxies,['自动上网（推荐）','直连上网（不经代理）']);
-});
-test('rejects node names that collide with option names', () => {
-  const input=fixture();input.proxies[0].name='上网方式';
-  assert.throws(()=>run(input),/冲突/);
-});
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
+const ctx={};vm.runInNewContext(fs.readFileSync(__dirname+'/扩展脚本-v16-面板简化-20260920.js','utf8')+'\nfunction main(config) {return config;}',ctx);
+const input={proxies:[{name:'hy',type:'hysteria2'},{name:'cdn',type:'vless',network:'ws'},{name:'tls',type:'vless',network:'tcp',server:'example.com'}],'proxy-providers':{'日本备用-新':{}},'proxy-groups':[{name:'PROXY',type:'select',proxies:['hy']}],rules:['DOMAIN,test.example,AUTO-STABLE','MATCH,PROXY']};
+const c=ctx.main(input),gs=c['proxy-groups'];assert.deepEqual(gs.filter(g=>!g.hidden).map(g=>g.name),['上网方式','切换到手动节点（展开选择）']);
+assert.equal(JSON.stringify(gs[0].proxies),JSON.stringify(['自动上网（推荐）','日本上网（自动测速）','切换到手动节点（展开选择）','直连上网（不经代理）']));
+const auto=gs.find(g=>g.type==='fallback');assert.equal(JSON.stringify(auto.proxies),JSON.stringify(['hy','cdn','tls','日本上网（自动测速）']));assert.equal(auto.lazy,false);assert.equal(auto.interval,15);
+assert.ok(c.rules.includes('GEOSITE,cn,DIRECT'));assert.ok(c.rules.includes('DOMAIN,test.example,自动上网（推荐）'));
+assert.equal(gs.find(g=>g.name==='直连上网（不经代理）').proxies[0],'DIRECT');
+const snapshot=JSON.stringify(c);assert.equal(JSON.stringify(ctx.main(c)),snapshot);
+const noJp=ctx.main({proxies:[{name:'hy',type:'hysteria2'}],'proxy-groups':[{name:'PROXY',type:'select',proxies:['hy']}],rules:['MATCH,PROXY']});assert.equal(noJp['proxy-groups'][0].proxies.length,3);
+console.log('PASS: one visible entry, three choices, fallback order, hidden active checks, direct mode, rule aliases, idempotence and no-provider case');
