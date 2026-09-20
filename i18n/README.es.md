@@ -74,3 +74,5 @@ Comunica pasos poco claros o errores mediante un Issue, indicando el paso, resul
 El apoyo es voluntario. La guía sigue siendo gratuita y puedes enviar comentarios sin contribuir económicamente.
 
 Consulta la [guía de conmutación](../docs/client-failover.md) para añadir suscripciones japonesas de respaldo opcionales y DNS directo para sitios chinos. Usa tus propios ajustes privados; el intervalo de 15 segundos no garantiza el tiempo de recuperación.
+
+Panel simplificado opcional: añade [simplify-panel.js](../scripts/simplify-panel.js) después del script principal. Ofrece acceso automático, Japón con pruebas automáticas (con proveedores configurados) y conexión directa. Conserva las reglas nacionales y las comprobaciones en segundo plano. Elimina el añadido para recuperar la selección individual de nodos. Consulta las [instrucciones y límites de verificación](../docs/client-failover.md).

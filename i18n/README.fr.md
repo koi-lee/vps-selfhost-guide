@@ -74,3 +74,5 @@ Signalez les étapes peu claires ou les erreurs dans une Issue, avec l’étape,
 Le soutien est facultatif. Le guide reste gratuit et vos retours sont les bienvenus, avec ou sans contribution financière.
 
 Les abonnements de secours japonais facultatifs et le DNS direct pour les sites chinois sont décrits dans le [guide de basculement](../docs/client-failover.md). Utilisez vos propres paramètres privés ; 15 secondes est un intervalle de contrôle, pas un délai de rétablissement garanti.
+
+Panneau simplifié facultatif : ajoutez [simplify-panel.js](../scripts/simplify-panel.js) après le script principal. Il propose le mode automatique, le Japon avec tests automatiques (si les fournisseurs sont configurés) et la connexion directe. Les règles nationales et les contrôles en arrière-plan restent actifs. Retirez cet ajout pour retrouver le choix individuel des nœuds. Voir les [instructions et limites de vérification](../docs/client-failover.md).

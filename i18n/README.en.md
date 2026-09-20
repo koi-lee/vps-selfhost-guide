@@ -74,3 +74,5 @@ Please report unclear steps or errors in an Issue, including the step, expected 
 Support is optional. The guide remains free, and feedback is welcome whether or not you contribute.
 
 Optional Japanese backup subscriptions and independent domestic DNS are described in the [client failover guide](../docs/client-failover.md). Fill in your own private provider settings; the 15-second interval is not a recovery deadline.
+
+Optional simplified panel: append [simplify-panel.js](../scripts/simplify-panel.js) after the main script. It offers automatic access, Japan with automatic testing (when providers are configured), and direct access. Domestic rules and background health checks remain active. Remove the appended script to restore individual node selection. See [instructions and verification limits](../docs/client-failover.md).
