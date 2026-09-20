@@ -6,10 +6,8 @@ function main(config) {
   });
   if (!japan.length) return config;
 
-  var groups = Array.isArray(config['proxy-groups']) ? config['proxy-groups'] : [];
-  groups = groups.filter(function (g) {
-    return g.name !== '上网方式' && g.name !== '日本上网（自动测速）';
-  });
+  // 旧订阅自带的 Proxy/Auto 等组会把几十个节点重新铺满页面；日常配置只保留两个必要组。
+  var groups = [];
   groups.push({
     name: '日本上网（自动测速）',
     type: 'url-test',
@@ -45,7 +43,9 @@ function main(config) {
   ];
   rules = direct.concat(rules.filter(function (r) {
     return direct.indexOf(r) === -1 && !/^MATCH,/.test(r);
-  }));
+  })).map(function (r) {
+    return r.replace(/,(Proxy|Auto)(?=,no-resolve$|$)/, ',上网方式');
+  });
   rules.push('MATCH,上网方式');
   config.rules = rules;
   return config;
