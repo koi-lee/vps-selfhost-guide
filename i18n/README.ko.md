@@ -75,4 +75,4 @@ python3 tests/check_i18n.py
 
 선택 사항인 일본 노드 백업 구독과 국내 직결 DNS는 [장애 전환 안내](../docs/client-failover.md)를 참고하세요. 본인의 비공개 설정이 필요하며 15초는 복구 보장 시간이 아닙니다.
 
-선택형 간소화 패널: 기본 스크립트 뒤에 [simplify-panel.js](../scripts/simplify-panel.js)를 추가하면 자동, 일본 자동 측정(provider 설정 시), 직접 연결을 선택할 수 있습니다. 중국 내 사이트 규칙과 백그라운드 상태 검사는 유지됩니다. 개별 노드 선택으로 돌아가려면 추가 부분을 제거하세요. [절차와 검증 범위](../docs/client-failover.md)를 확인하세요.
+선택형 간소화 패널은 기본 스크립트 뒤에 [simplify-panel.js](../scripts/simplify-panel.js)를 추가합니다. 수동으로 사용하려면 아래 목록에서 노드를 고른 뒤 위의 「切换到手动节点」을 선택하세요. 여러 국가가 있는 구독에는 카드마다 [subscription-japan-url-test.js](../scripts/subscription-japan-url-test.js)를 적용하여 해당 구독의 일본 노드만 자동 선택합니다. 규칙 모드에서는 중국 내 직접 연결 규칙이 유지됩니다. 저장된 선택이 기본값보다 우선할 수 있으며 이전 Timeout 표시만으로 장애를 판단할 수 없습니다. [검증 범위](../docs/client-failover.md)와 [다른 컴퓨터 설정](../docs/family-client-setup.md)을 확인하세요.

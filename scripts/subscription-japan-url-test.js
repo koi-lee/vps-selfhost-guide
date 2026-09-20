@@ -1,11 +1,14 @@
-// 旧订阅专用：默认在本订阅的日本节点中自动选择低延迟且可用的节点。
+// 新、旧等多国订阅：只在当前订阅中选择日本节点，保留全部国家手选。
 function main(config) {
   var proxies = Array.isArray(config.proxies) ? config.proxies : [];
   var japan = proxies.map(function (p) { return p.name; }).filter(function (name) {
     return /日本|Japan|\bJP\b|🇯🇵/i.test(name);
   });
   if (!japan.length) return config;
-  var allNames = proxies.map(function (p) { return p.name; });
+  var allNames = proxies.map(function (p) { return p.name; }).filter(function(name) {
+    return !/有效期|剩余|到期|流量重置/.test(name);
+  });
+  var originalNames = (config['proxy-groups'] || []).map(function(g) { return g.name; });
 
   // 旧订阅自带的 Proxy/Auto 等组会把几十个节点重新铺满页面；日常配置只保留两个必要组。
   var groups = [];
@@ -25,17 +28,18 @@ function main(config) {
   groups.unshift({
     name: '上网方式',
     type: 'select',
-    proxies: ['日本上网（自动测速）', '切换到手动节点（展开选择）', 'DIRECT'],
+    proxies: ['日本上网（自动测速）', '切换到手动节点', 'DIRECT'],
     'default-selected': '日本上网（自动测速）',
     hidden: false
   });
   groups.push({
-    name: '切换到手动节点（展开选择）',
+    name: '全部国家节点列表',
     type: 'select',
     proxies: allNames,
     'default-selected': allNames[0],
     hidden: false
   });
+  groups.push({name:'切换到手动节点', type:'select', proxies:['全部国家节点列表'], hidden:true});
   config['proxy-groups'] = groups;
 
   var rules = Array.isArray(config.rules) ? config.rules : [];
@@ -52,9 +56,19 @@ function main(config) {
   rules = direct.concat(rules.filter(function (r) {
     return direct.indexOf(r) === -1 && !/^MATCH,/.test(r);
   })).map(function (r) {
-    return r.replace(/,(Proxy|Auto)(?=,no-resolve$|$)/, ',上网方式');
+    var parts = r.split(',');
+    var index = parts[parts.length - 1] === 'no-resolve' ? parts.length - 2 : parts.length - 1;
+    if (originalNames.indexOf(parts[index]) !== -1 && !groups.some(function(g) { return g.name === parts[index]; })) parts[index] = '上网方式';
+    return parts.join(',');
   });
   rules.push('MATCH,上网方式');
   config.rules = rules;
+  var directDns = ['https://doh.pub/dns-query#DIRECT', 'https://dns.alidns.com/dns-query#DIRECT'];
+  config.dns = Object.assign({}, config.dns || {}, {
+    'default-nameserver':['223.5.5.5','119.29.29.29'],
+    'direct-nameserver':directDns, 'direct-nameserver-follow-policy':false,
+    'proxy-server-nameserver':directDns,
+    'nameserver-policy':Object.assign({}, (config.dns || {})['nameserver-policy'] || {}, {'geosite:cn':directDns, '+.cn':directDns})
+  });
   return config;
 }

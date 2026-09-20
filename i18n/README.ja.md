@@ -75,4 +75,4 @@ python3 tests/check_i18n.py
 
 任意の日本ノードの予備サブスクリプションと国内向け独立 DNS は[切替ガイド](../docs/client-failover.md)を参照してください。自分の非公開設定を使い、15 秒間隔を復旧期限と解釈しないでください。
 
-任意の簡易パネル：[simplify-panel.js](../scripts/simplify-panel.js) をメインスクリプトの末尾に追加すると、自動、日本自動測定（provider 設定時）、直接接続を選べます。国内向けルールとバックグラウンド検査は維持されます。個別ノード選択に戻すには追加部分を削除します。[手順と検証範囲](../docs/client-failover.md)を参照してください。
+任意の簡易パネル：[simplify-panel.js](../scripts/simplify-panel.js) をメインスクリプトの末尾に追加します。手動操作では下の一覧でノードを選び、上で「切换到手动节点」を選択します。複数国の訂阅には [subscription-japan-url-test.js](../scripts/subscription-japan-url-test.js) をカードごとに設定し、その訂阅内の日本ノードを自動選択します。ルールモードでは中国国内の直結ルールを維持します。保存された選択は初期値より優先される場合があります。古い Timeout 表示だけで故障とは判断できません。[検証範囲](../docs/client-failover.md)と[別のパソコンの設定](../docs/family-client-setup.md)を参照してください。
