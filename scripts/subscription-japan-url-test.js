@@ -5,6 +5,7 @@ function main(config) {
     return /日本|Japan|\bJP\b|🇯🇵/i.test(name);
   });
   if (!japan.length) return config;
+  var allNames = proxies.map(function (p) { return p.name; });
 
   // 旧订阅自带的 Proxy/Auto 等组会把几十个节点重新铺满页面；日常配置只保留两个必要组。
   var groups = [];
@@ -24,8 +25,15 @@ function main(config) {
   groups.unshift({
     name: '上网方式',
     type: 'select',
-    proxies: ['日本上网（自动测速）', 'DIRECT'],
+    proxies: ['日本上网（自动测速）', '手动选择节点（全部国家）', 'DIRECT'],
     'default-selected': '日本上网（自动测速）',
+    hidden: false
+  });
+  groups.push({
+    name: '手动选择节点（全部国家）',
+    type: 'select',
+    proxies: allNames,
+    'default-selected': allNames[0],
     hidden: false
   });
   config['proxy-groups'] = groups;
