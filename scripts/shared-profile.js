@@ -1,5 +1,6 @@
-// 独立分享版：仅用于本包四节点模板；不含服务器或身份信息。
+// 公开自建版：仅用于本仓库节点模板；不含服务器或身份信息。
 function main(config) {
+  if (Object.keys(config['proxy-providers'] || {}).length) throw new Error('公开脚本仅支持自建节点模板，不支持外部 proxy-providers；请使用独立配置');
   const ps = config.proxies || [];
   if (!ps.length || new Set(ps.map(p => p.name)).size !== ps.length) throw new Error('需要名称唯一的节点');
   const hy = ps.filter(p => p.type === 'hysteria2');
@@ -11,21 +12,11 @@ function main(config) {
   const auto = [...hy, ...ws, ...v4].map(p => p.name);
   if (!auto.length) throw new Error('缺少可自动回退的节点');
   const names = new Set(ps.map(p => p.name));
-  if (['上网线路','自动切换（推荐）','日本低延迟（跨订阅）','DIRECT'].some(n => names.has(n))) throw new Error('节点名与代理组冲突');
+  if (['上网线路','自动切换（推荐）','DIRECT'].some(n => names.has(n))) throw new Error('节点名与代理组冲突');
   config['proxy-groups'] = [
     {name:'上网线路', type:'select', proxies:['自动切换（推荐）', ...hy.map(p=>p.name), ...v6.map(p=>p.name), ...ws.map(p=>p.name), ...v4.map(p=>p.name), ...ps.filter(p=>![...hy,...ws,...v4,...v6].includes(p)).map(p=>p.name), 'DIRECT']},
     {name:'自动切换（推荐）', type:'fallback', hidden:false, proxies:auto, url:'https://www.gstatic.com/generate_204', interval:15, timeout:5000, 'max-failed-times':2, 'expected-status':204, lazy:false}
   ];
-  // 仅引用使用者在私有覆写配置中明确启用的 provider。
-  const providers = config['proxy-providers'] || {};
-  const sources = ['japan-primary', 'japan-secondary'].filter(name => providers[name]);
-  if (sources.length) {
-    config['proxy-groups'][1].proxies.push('日本低延迟（跨订阅）');
-    config['proxy-groups'].push({name:'日本低延迟（跨订阅）', type:'url-test', use:sources,
-      filter:'日本|(?i:Japan|\\bJP\\b)|🇯🇵', url:'https://www.gstatic.com/generate_204',
-      interval:15, timeout:5000, 'expected-status':204, lazy:false, tolerance:50,
-      'empty-fallback':'REJECT'});
-  }
   const directRules = [
   "DOMAIN-SUFFIX,workbuddy.cn,DIRECT",
   "DOMAIN-SUFFIX,codebuddy.cn,DIRECT",

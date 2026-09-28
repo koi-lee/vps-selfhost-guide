@@ -4,6 +4,12 @@
 
 This guide covers VPS selection, deployment, Clash Verge Rev configuration and troubleshooting. Ask your agent to read README.md and AGENTS.md, then guide setup and verification for your network and server. Use your own accounts and server; configurations are examples.
 
+## Downloads and deployment target
+
+[RackNerd affiliate link](https://my.racknerd.com/aff.php?aff=21220) · [Official Clash Verge Rev downloads](https://github.com/clash-verge-rev/clash-verge-rev/releases). Select a stable client release for your operating system and CPU architecture. The affiliate link may earn the author a commission; it does not guarantee an extra discount for the buyer.
+
+The default goal is three self-hosted routes: HY2, CDN and IPv4 VLESS, with automatic fallback. Testing HY2 first is an intermediate checkpoint; continue through backup routes and failover verification. IPv6 is optional and manual. No separate VPN subscription is required. Follow the [deployment stage table](../docs/deployment.md) and record incomplete stages in the [verification checklist](../docs/verification.md).
+
 ## The VPS provider I use
 
 I built this setup on RackNerd. Use the guide to choose a server that fits your budget and network.
@@ -20,7 +26,7 @@ This page translates the core onboarding instructions. The detailed documents li
 
 ## Start with your agent
 
-> Read AGENTS.md, README.md and docs/ first. Explain the procedure in English. Use my own accounts and server. Ask for my budget, ISP, location, operating system, domain and IPv6 availability. Verify current official versions and prices. Obtain approval before any purchase. Back up existing services and preserve SSH access. Deploy and test HY2 first, then add optional VLESS/CDN, individual configuration and Clash Verge Rev. Do not expose credentials or change unrelated services. Report untested steps honestly.
+> Read AGENTS.md, README.md and docs/ first. Explain the procedure in English. Use my own accounts and server. Ask for my budget, ISP, location, operating system, domain and IPv6 availability. Verify current official versions and prices. Obtain approval before any purchase. Back up existing services and preserve SSH access. Complete HY2, CDN and IPv4 VLESS with Clash Verge Rev automatic fallback. Test HY2 first, then continue through backup routes and failover verification using the deployment stage table; do not stop at the first working route. Do not expose credentials or change unrelated services. Report untested steps honestly.
 
 ## Deployment sequence
 
@@ -29,7 +35,7 @@ First use the RackNerd support link above to register and sign in to your own ac
 1. Compare VPS renewal price, refund terms, traffic quota, UDP and IPv6 support. Test the actual route during peak hours; distance alone does not predict speed.
 2. Check architecture, ports, time and firewall. Use a valid certificate for your own domain and matching SNI. Keep administrative interfaces on loopback behind an SSH tunnel.
 3. Start with the standalone Hysteria service. The supplied template has one password; independent per-user revocation requires a supported authentication design and real tests.
-4. Add Xray VLESS/TLS on TCP 443 and optional WebSocket/TLS on 8443. For a compatible CDN, use strict origin TLS; do not send HY2 UDP or Vision TCP through a WebSocket CDN route. Generate Xray JSON for the installed version and validate it before starting.
+4. Add Xray VLESS/TLS on TCP 443 and WebSocket/TLS on 8443. For a compatible CDN, use strict origin TLS; do not send HY2 UDP or Vision TCP through a WebSocket CDN route. Generate Xray JSON for the installed version and validate it before starting.
 5. Fill all REPLACE_* values in the shared template. Give each user their own credentials and YAML. Automatic subscription updates require a separately verified HTTPS distribution service with revocable tokens.
 6. In Clash Verge Rev, import the configuration and paste the shared script into its extension-script editor. Save and apply the profile. Subscription refresh downloads data; profile activation applies it.
 7. Test each route, domestic direct access, overseas HTTPS, uploads, restart and rollback. Test system proxy before TUN. Never disable certificate verification to suppress an error.
@@ -60,6 +66,7 @@ Run these commands from the repository root.
 ```sh
 node --test tests/*.test.js
 python3 tests/check_docs.py
+python3 tests/check_copy.py
 python3 tests/check_i18n.py
 ```
 
@@ -73,6 +80,6 @@ Please report unclear steps or errors in an Issue, including the step, expected 
 
 Support is optional. The guide remains free, and feedback is welcome whether or not you contribute.
 
-Optional Japanese backup subscriptions and independent domestic DNS are described in the [client failover guide](../docs/client-failover.md). Fill in your own private provider settings; the 15-second interval is not a recovery deadline.
+Self-hosted routes use priority fallback, not lowest-latency selection. A slow route that still passes health checks may remain selected. See the [client guide](../docs/client-failover.md) for domestic DNS and verification limits. All routes share the VPS; multiple protocols do not provide server-level redundancy.
 
-Optional simplified panel: append [simplify-panel.js](../scripts/simplify-panel.js) after the main script. It retains automatic, Japanese backup, direct and manual choices. For manual access, choose a node in the lower list, then select 「切换到手动节点」 above. Multi-country subscriptions use [subscription-japan-url-test.js](../scripts/subscription-japan-url-test.js) separately on each card, choosing only that subscription’s Japanese nodes. Domestic rules remain active in rule mode. Saved selections can override defaults; an old Timeout label does not alone establish failure. See the [verification limits](../docs/client-failover.md) and [second-computer setup](../docs/family-client-setup.md).
+Optional simplified panel: append [simplify-panel.js](../scripts/simplify-panel.js) after the main script. It offers automatic, manual and direct choices. Select a node in the lower list, then choose 「切换到手动节点」 above; return to 「自动上网（推荐）」 afterward. Without the optional panel, select a node directly in 「上网线路」. The public script rejects non-empty external `proxy-providers`; keep private extensions in a separate profile. See [second-computer setup](../docs/family-client-setup.md).

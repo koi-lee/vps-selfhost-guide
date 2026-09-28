@@ -14,11 +14,10 @@ for (const d of ['gov.cn','sogou.com','so.com','miguvideo.com','douban.com','bil
 assert(out.rules.indexOf('GEOSITE,cn,DIRECT') < out.rules.indexOf('GEOIP,CN,DIRECT'));
 assert(out.dns['direct-nameserver'].every(x=>x.endsWith('#DIRECT')));
 const extra={proxies:[{name:'hy',type:'hysteria2',server:'edge.example.com'}], 'proxy-providers':{'japan-primary':{type:'file',path:'./test-only.yaml'}}};
-const result=ctx.main(extra);
-assert.equal(result['proxy-groups'][1].proxies.at(-1),'日本低延迟（跨订阅）');
-assert.deepEqual(Array.from(result['proxy-groups'][2].use),['japan-primary']);
-assert.equal(result['proxy-groups'][2]['empty-fallback'],'REJECT');
-assert.match(result['proxy-groups'][2].filter,/日本/);
-assert.equal(JSON.stringify(ctx.main(JSON.parse(JSON.stringify(result)))),JSON.stringify(result));
-assert.throws(()=>ctx.main({proxies:[{name:'日本低延迟（跨订阅）',type:'hysteria2',server:'edge.example.com'}]}));
-console.log('PASS: optional Japan providers, reserved group, idempotence, domestic category routing and direct DNS');
+const before=JSON.stringify(extra);
+assert.throws(()=>ctx.main(extra),/proxy-providers/);
+assert.equal(JSON.stringify(extra),before);
+assert.equal(out['proxy-groups'].length,2);
+assert.equal(out['proxy-groups'].some(g=>g.use || g.type==='url-test'),false);
+assert.equal(JSON.stringify(ctx.main(JSON.parse(JSON.stringify(out)))),JSON.stringify(out));
+console.log('PASS: self-hosted-only groups, external provider rejection, idempotence, domestic routing and direct DNS');

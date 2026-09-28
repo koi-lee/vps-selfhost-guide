@@ -8,13 +8,16 @@
 
 > 状态：新版完成离线验证；新 VPS 端到端部署尚未复现。本仓库由脱敏文件建立全新历史，发布记录见 [发布状态](docs/release-status.md)。不承诺一键成功或复制他人的网速。
 
-## 我使用的 VPS 服务商
+## 购买与下载入口
 
-我这套配置用的是 RackNerd。你可以照着这份教程，按自己的预算和网络情况选服务器。
+| 用途 | 入口 | 如何选择 |
+| --- | --- | --- |
+| VPS 服务器 | [RackNerd 推广链接](https://my.racknerd.com/aff.php?aff=21220) | 我使用的服务商；已有合适 VPS 可直接复用，购买前核对线路、续费和退款条款 |
+| 本地客户端 | [Clash Verge Rev 官方下载](https://github.com/clash-verge-rev/clash-verge-rev/releases) | 在自己的电脑安装，选择对应系统和 CPU 架构的稳定版安装包 |
 
-**[查看 RackNerd，支持我继续维护这份教程](https://my.racknerd.com/aff.php?aff=21220)**
+客户端名称为 **Clash Verge Rev**。下载页提供 Windows、macOS 和 Linux 版本；安装包与系统、架构的对应关系以官方发布页为准。
 
-*如果你通过这个链接购买，我可能会获得佣金，用来维护和更新这份教程。谢谢支持！*
+*通过上方 RackNerd 推广链接购买，我可能会获得佣金，用于维护教程。推广链接不代表买家一定获得额外折扣，价格与优惠以结算页面为准。*
 
 ## 适合谁
 
@@ -25,9 +28,22 @@
 1. **先注册账号**：通过上方 RackNerd 支持链接进入网站，注册并登录自己的账号。已有账号直接登录；已有可用 VPS 可跳过选购。
 2. **购买前交给 Agent**：把仓库文件夹和下面的任务发给 Agent，结合 [参数表](docs/parameters.example.md) 核对预算、运营商、设备条件与候选套餐。
 3. **确认后再购买**：由你核对总价、续费和退款条款，确认付款；等待 VPS 开通并验证 SSH 登录。
-4. 按 [部署指南](docs/deployment.md) 分步部署，再按 [验收与恢复](docs/verification.md) 验证。
+4. 从上方官方下载页准备 Clash Verge Rev，按 [部署指南](docs/deployment.md) 完成多线路配置，再按 [验收与恢复](docs/verification.md) 验证每条线路及自动切换。
 
-> 把仓库交给 Agent 时，让它先读 AGENTS.md、README.md 和 docs/，再询问预算、网络条件和服务器情况。购买由你自己确认；服务器开通后先搭 HY2，再按需加入 VLESS/CDN、个人订阅和 Clash Verge Rev，并在每一步备份和验收。不要把密码、密钥或订阅链接发到聊天里。
+可以将下面这段任务连同仓库地址交给 Agent：
+
+> 请先读 AGENTS.md、README.md，再按 docs/deployment.md 的阶段表执行。目标是完成 HY2 主线路、VLESS/CDN 与 IPv4 VLESS 备用、Clash Verge Rev 自动切换及国内直连。先核对我的网络、服务器、域名、设备和已有服务，填写本地私密参数表。逐条部署并验证：HY2 成功是中间检查点，随后继续完成备用线路和切换验收。IPv6、多用户和远程订阅按实际需要启用；条件不足时记录缺口，不把单线路成功写成完整部署完成。保留自建线路的优先级回退策略，每一步备份并记录结果；已授权的步骤连续完成，涉及购买、账号验证或超出授权的操作时再由我确认。不要把密码、密钥或订阅链接发到聊天里。
+
+## 最终配置与部署顺序
+
+推荐完成三条自建线路：HY2 主线路、WebSocket CDN 备用和 IPv4 VLESS 备用。IPv6 验证可用后作为手动备用。公开方案使用自己的 VPS 和域名，无需另购 VPN 订阅。先测通 HY2 是为了分层定位问题，完整目标仍是多线路自动回退。
+
+| 情况 | 当前脚本的行为 |
+| --- | --- |
+| 自建线路自动上网 | `fallback` 按 HY2 → CDN → IPv4 的顺序选可用线路，主线路仍可用但变慢时，不保证改选延迟更低的线路 |
+| 手动选择 | 可直接选已验证节点；不会自动替换失效的手选节点，日常使用应切回自动 |
+
+同一台 VPS 上的多种协议能提供不同连接路径，但共享服务器、出口等故障点；增加线路不等于服务器级容灾。完整步骤与验收见 [部署指南](docs/deployment.md) 和 [客户端故障切换](docs/client-failover.md)。
 
 ## 架构
 
@@ -57,7 +73,7 @@ flowchart LR
 | [docs/verification.md](docs/verification.md) | 实测与恢复流程 |
 | [docs/rebuild-runbook.md](docs/rebuild-runbook.md) | 安装映射、续期、多用户边界和恢复顺序 |
 | [docs/faq.md](docs/faq.md) | 常见问题 |
-| [docs/client-failover.md](docs/client-failover.md) | 跨订阅备用、国内 DNS 和故障验收 |
+| [docs/client-failover.md](docs/client-failover.md) | 自建线路回退、国内 DNS 和故障验收 |
 | [templates/clash.example.yaml](templates/clash.example.yaml) | 四节点占位配置 |
 | [scripts/shared-profile.js](scripts/shared-profile.js) | 自动组与国内分流脚本 |
 | [llms.txt](llms.txt) | Agent 内容索引 |
@@ -69,6 +85,7 @@ flowchart LR
 ```sh
 node --test tests/*.test.js
 python3 tests/check_docs.py
+python3 tests/check_copy.py
 python3 tests/check_i18n.py
 ```
 
@@ -76,7 +93,7 @@ python3 tests/check_i18n.py
 
 ## 版本与证据
 
-更新日期：2026-09-14。本版本完成脚本回归、文档链接与模板隐私检查；服务器配置与真实流量仍由部署者验收。[变更记录](CHANGELOG.md) · [安全说明](SECURITY.md) · [MIT 许可证](LICENSE)
+更新日期：2026-09-28。本版本完成脚本回归、文档链接与模板隐私检查；服务器配置与真实流量仍由部署者验收。[变更记录](CHANGELOG.md) · [安全说明](SECURITY.md) · [MIT 许可证](LICENSE)
 
 ## 反馈与持续更新
 

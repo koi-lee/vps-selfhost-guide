@@ -4,6 +4,12 @@
 
 VPS 선택, 배포, Clash Verge Rev 설정과 문제 해결을 안내합니다. 에이전트가 README.md와 AGENTS.md를 먼저 읽고 본인의 네트워크와 서버에 맞춰 구축과 검증을 돕도록 하세요. 설정은 예제이며 본인의 서버와 계정을 사용해야 합니다.
 
+## 다운로드와 구축 목표
+
+[RackNerd 제휴 링크](https://my.racknerd.com/aff.php?aff=21220) · [Clash Verge Rev 공식 다운로드](https://github.com/clash-verge-rev/clash-verge-rev/releases). 운영체제와 CPU에 맞는 안정 버전을 선택하세요. 제휴 링크로 구매하면 작성자가 수수료를 받을 수 있지만, 구매자에게 추가 할인이 보장되는 것은 아닙니다.
+
+기본 목표는 본인 VPS의 HY2, CDN, IPv4 VLESS 세 경로와 자동 전환입니다. HY2 검증은 중간 단계이며, 이후 예비 경로와 장애 전환 검증까지 진행하세요. IPv6는 선택적인 수동 경로입니다. 별도 VPN 구독은 필요하지 않습니다. [배포 단계표](../docs/deployment.md)에 따라 진행하고 [검증 기록](../docs/verification.md)에 미완료 항목을 남기세요.
+
 ## 제가 사용하는 VPS 업체
 
 이 구성은 RackNerd에서 직접 운영하고 있습니다. 예산과 네트워크에 맞는 서버를 이 가이드를 보며 선택하세요.
@@ -20,7 +26,7 @@ VPS 선택, 배포, Clash Verge Rev 설정과 문제 해결을 안내합니다. 
 
 ## 에이전트에게 보낼 요청
 
-> 먼저 AGENTS.md, README.md와 docs/를 읽고 한국어로 설명하세요. 제 서버와 계정을 사용하세요. 예산, 통신사, 지역, 운영체제, 도메인과 IPv6 지원 여부를 확인하고 최신 공식 버전과 가격을 검토하세요. 결제 전 승인을 받으세요. 기존 서비스를 백업하고 SSH 접속을 유지하세요. HY2를 먼저 구축하고 실제로 검사한 뒤 필요한 VLESS/CDN, 개인별 설정과 Clash Verge Rev를 추가하세요. 비밀 정보를 출력하거나 무관한 서비스를 변경하지 말고, 미검증 단계는 명확히 보고하세요.
+> 먼저 AGENTS.md, README.md와 docs/를 읽고 한국어로 설명하세요. 제 서버와 계정을 사용하세요. 예산, 통신사, 지역, 운영체제, 도메인과 IPv6 지원 여부를 확인하고 최신 공식 버전과 가격을 검토하세요. 결제 전 승인을 받으세요. 기존 서비스를 백업하고 SSH 접속을 유지하세요. HY2, CDN, IPv4 VLESS와 Clash Verge Rev 자동 전환까지 완료하세요. HY2를 먼저 검사한 뒤 배포 단계표에 따라 예비 경로와 장애 전환 검증까지 계속하세요. 비밀 정보를 출력하거나 무관한 서비스를 변경하지 말고, 미검증 단계는 명확히 보고하세요.
 
 ## 배포 순서
 
@@ -29,7 +35,7 @@ VPS 선택, 배포, Clash Verge Rev 설정과 문제 해결을 안내합니다. 
 1. 갱신 가격, 환불 조건, 트래픽 한도, UDP와 IPv6 지원을 비교하세요. 혼잡 시간대의 실제 경로를 시험하세요. 지리적 거리만으로 속도를 판단할 수 없습니다.
 2. 아키텍처, 시간, 포트와 방화벽을 확인하세요. 본인 도메인의 유효한 인증서와 일치하는 SNI를 사용하세요. 관리 화면은 루프백에 바인딩하고 SSH 터널로 접속하세요.
 3. 독립 Hysteria 서비스부터 시작하세요. 템플릿은 단일 비밀번호 방식입니다. 사용자별 독립적인 접근 취소에는 지원되는 인증 방식과 실측 검증이 필요합니다.
-4. TCP 443에 Xray VLESS/TLS를, 필요한 경우 8443에 WebSocket/TLS를 추가하세요. CDN은 엄격한 원본 TLS 검증을 사용하세요. HY2 UDP나 Vision TCP를 WebSocket CDN 경로에 보내지 마세요. 설치 버전에 맞는 Xray JSON을 생성하고 검사한 뒤 시작하세요.
+4. TCP 443에 Xray VLESS/TLS를, 8443에 WebSocket/TLS를 추가하세요. CDN은 엄격한 원본 TLS 검증을 사용하세요. HY2 UDP나 Vision TCP를 WebSocket CDN 경로에 보내지 마세요. 설치 버전에 맞는 Xray JSON을 생성하고 검사한 뒤 시작하세요.
 5. 모든 REPLACE_* 값을 바꾸고 사용자마다 고유한 인증 정보와 YAML을 제공하세요. 자동 구독 업데이트는 취소 가능한 토큰을 갖춘 HTTPS 배포 서비스를 별도로 검증해야 합니다.
 6. Clash Verge Rev에서 설정을 가져오고 확장 스크립트 편집기에 공통 스크립트를 붙여 넣은 뒤 저장하고 적용하세요. 구독 새로고침은 데이터 다운로드이며, 프로필 활성화는 설정 적용입니다.
 7. 각 경로, 국내 직접 연결, 해외 HTTPS, 업로드, 재시작과 복구를 검사하세요. TUN보다 시스템 프록시를 먼저 시험하세요. 오류를 숨기려고 인증서 검증을 끄지 마세요.
@@ -60,6 +66,7 @@ DIRECT 예외에는 cloudflare.com, cloudflare-dns.com 및 하위 도메인도 �
 ```sh
 node --test tests/*.test.js
 python3 tests/check_docs.py
+python3 tests/check_copy.py
 python3 tests/check_i18n.py
 ```
 
@@ -73,6 +80,6 @@ python3 tests/check_i18n.py
 
 지원은 자율입니다. 가이드는 무료이며 지원 여부와 관계없이 피드백을 환영합니다.
 
-선택 사항인 일본 노드 백업 구독과 국내 직결 DNS는 [장애 전환 안내](../docs/client-failover.md)를 참고하세요. 본인의 비공개 설정이 필요하며 15초는 복구 보장 시간이 아닙니다.
+자체 경로는 우선순위에 따라 전환하며 항상 최저 지연 노드를 고르지는 않습니다. 느려도 상태 검사를 통과하면 해당 경로가 유지될 수 있습니다. 국내 DNS와 검증 범위는 [클라이언트 안내](../docs/client-failover.md)를 참고하세요. 같은 VPS의 여러 경로는 서버 장애에 대한 이중화가 아닙니다.
 
-선택형 간소화 패널은 기본 스크립트 뒤에 [simplify-panel.js](../scripts/simplify-panel.js)를 추가합니다. 수동으로 사용하려면 아래 목록에서 노드를 고른 뒤 위의 「切换到手动节点」을 선택하세요. 여러 국가가 있는 구독에는 카드마다 [subscription-japan-url-test.js](../scripts/subscription-japan-url-test.js)를 적용하여 해당 구독의 일본 노드만 자동 선택합니다. 규칙 모드에서는 중국 내 직접 연결 규칙이 유지됩니다. 저장된 선택이 기본값보다 우선할 수 있으며 이전 Timeout 표시만으로 장애를 판단할 수 없습니다. [검증 범위](../docs/client-failover.md)와 [다른 컴퓨터 설정](../docs/family-client-setup.md)을 확인하세요.
+간소화 패널은 선택 사항입니다. 기본 스크립트 뒤에 [simplify-panel.js](../scripts/simplify-panel.js)를 추가하면 자동, 수동, 직접 연결을 선택할 수 있습니다. 아래 목록에서 노드를 고른 뒤 위에서 「切换到手动节点」을 선택하고, 평소에는 「自动上网（推荐）」으로 돌아가세요. 추가하지 않았다면 「上网线路」에서 노드를 직접 선택합니다. 공개 스크립트는 비어 있지 않은 외부 `proxy-providers`를 거부합니다. 개인 확장은 별도 설정에 보관하세요. [다른 컴퓨터 설정](../docs/family-client-setup.md)도 확인하세요.

@@ -4,6 +4,12 @@
 
 Ce guide couvre le choix du VPS, le déploiement, Clash Verge Rev et le dépannage. Demandez à votre agent de lire README.md et AGENTS.md pour adapter la configuration et les tests à votre réseau et serveur. Utilisez vos propres comptes et serveur ; les configurations sont des exemples.
 
+## Téléchargements et objectif du déploiement
+
+[Lien affilié RackNerd](https://my.racknerd.com/aff.php?aff=21220) · [Téléchargements officiels de Clash Verge Rev](https://github.com/clash-verge-rev/clash-verge-rev/releases). Choisissez une version stable adaptée au système et au processeur. L’auteur peut percevoir une commission ; ce lien ne garantit pas de réduction supplémentaire à l’acheteur.
+
+L’objectif par défaut comprend trois routes sur votre VPS : HY2, CDN et IPv4 VLESS, avec basculement automatique. Tester HY2 est une étape intermédiaire ; poursuivez avec les routes de secours et les tests de basculement. IPv6 est facultatif et manuel. Aucun abonnement VPN supplémentaire n’est nécessaire. Suivez le [tableau des étapes](../docs/deployment.md) et notez les éléments incomplets dans la [vérification](../docs/verification.md).
+
 ## Le fournisseur de VPS que j’utilise
 
 Cette configuration tourne chez RackNerd. Utilisez le guide pour choisir un serveur adapté à votre budget et à votre réseau.
@@ -20,7 +26,7 @@ Cette page traduit les instructions essentielles de démarrage. Les documents d�
 
 ## Consigne à donner à l’agent
 
-> Lisez d’abord AGENTS.md, README.md et docs/, puis expliquez les étapes en français. Utilisez mes propres comptes et serveurs. Demandez mon budget, opérateur, localisation, système, domaine et disponibilité IPv6. Vérifiez les versions et tarifs officiels actuels. Obtenez mon accord avant tout achat. Sauvegardez les services existants et préservez l’accès SSH. Déployez et testez HY2 avant d’ajouter VLESS/CDN en option, les configurations individuelles et Clash Verge Rev. N’affichez aucun secret et ne modifiez pas les services sans rapport. Signalez explicitement les étapes non vérifiées.
+> Lisez d’abord AGENTS.md, README.md et docs/, puis expliquez les étapes en français. Utilisez mes propres comptes et serveurs. Demandez mon budget, opérateur, localisation, système, domaine et disponibilité IPv6. Vérifiez les versions et tarifs officiels actuels. Obtenez mon accord avant tout achat. Sauvegardez les services existants et préservez l’accès SSH. Terminez HY2, CDN et IPv4 VLESS avec le basculement automatique de Clash Verge Rev. Testez HY2 puis poursuivez avec les routes de secours et les tests de basculement selon le tableau des étapes. N’affichez aucun secret et ne modifiez pas les services sans rapport. Signalez explicitement les étapes non vérifiées.
 
 ## Étapes de déploiement
 
@@ -29,7 +35,7 @@ Commencez par le lien de soutien RackNerd ci-dessus pour créer votre propre com
 1. Comparez les tarifs de renouvellement, remboursements, quotas de trafic et prises en charge UDP/IPv6. Testez le trajet réel aux heures de pointe : la distance ne suffit pas à prévoir la qualité.
 2. Vérifiez architecture, horloge, ports et pare-feu. Utilisez un certificat valide pour votre domaine avec un SNI correspondant. Gardez l’administration sur l’interface de bouclage via un tunnel SSH.
 3. Commencez par Hysteria autonome. Le modèle utilise un mot de passe unique ; une révocation indépendante par utilisateur exige une authentification compatible et des tests réels.
-4. Ajoutez Xray VLESS/TLS sur TCP 443 et éventuellement WebSocket/TLS sur 8443. Activez la validation TLS stricte vers l’origine du CDN. Ne faites pas passer HY2 UDP ou Vision TCP par une route CDN WebSocket. Générez le JSON Xray adapté à la version installée et validez-le avant le démarrage.
+4. Ajoutez Xray VLESS/TLS sur TCP 443 et WebSocket/TLS sur 8443. Activez la validation TLS stricte vers l’origine du CDN. Ne faites pas passer HY2 UDP ou Vision TCP par une route CDN WebSocket. Générez le JSON Xray adapté à la version installée et validez-le avant le démarrage.
 5. Remplacez tous les REPLACE_* et fournissez à chacun ses propres identifiants et son YAML. Les abonnements automatiques exigent un service HTTPS de distribution vérifié, avec des jetons révocables.
 6. Importez la configuration dans Clash Verge Rev, collez le script commun dans l’éditeur d’extension, enregistrez et appliquez le profil. Actualiser l’abonnement télécharge les données ; activer le profil applique la configuration.
 7. Testez chaque route, l’accès direct national, HTTPS international, les envois, le redémarrage et la restauration. Testez le proxy système avant TUN. Ne désactivez jamais la vérification du certificat pour masquer une erreur.
@@ -60,6 +66,7 @@ Exécutez ces commandes depuis la racine du dépôt.
 ```sh
 node --test tests/*.test.js
 python3 tests/check_docs.py
+python3 tests/check_copy.py
 python3 tests/check_i18n.py
 ```
 
@@ -73,6 +80,6 @@ Signalez les étapes peu claires ou les erreurs dans une Issue, avec l’étape,
 
 Le soutien est facultatif. Le guide reste gratuit et vos retours sont les bienvenus, avec ou sans contribution financière.
 
-Les abonnements de secours japonais facultatifs et le DNS direct pour les sites chinois sont décrits dans le [guide de basculement](../docs/client-failover.md). Utilisez vos propres paramètres privés ; 15 secondes est un intervalle de contrôle, pas un délai de rétablissement garanti.
+Les routes du VPS basculent par priorité, sans sélectionner systématiquement la latence minimale. Une route lente qui réussit les contrôles peut rester utilisée. Consultez le [guide du client](../docs/client-failover.md) pour le DNS et les limites de vérification. Plusieurs routes sur le même VPS ne protègent pas contre une panne du serveur.
 
-Panneau facultatif : ajoutez [simplify-panel.js](../scripts/simplify-panel.js) au script principal. Pour le mode manuel, choisissez un nœud dans la liste du bas puis 「切换到手动节点」 en haut. Pour une offre multinationale, appliquez [subscription-japan-url-test.js](../scripts/subscription-japan-url-test.js) à chaque carte : seuls ses propres nœuds japonais sont sélectionnés automatiquement. Les règles nationales directes restent actives en mode règles. Les choix mémorisés peuvent remplacer la valeur initiale ; un ancien Timeout ne prouve pas à lui seul une panne. Consultez les [limites](../docs/client-failover.md) et la [configuration d’un autre ordinateur](../docs/family-client-setup.md).
+Panneau simplifié facultatif : ajoutez [simplify-panel.js](../scripts/simplify-panel.js) après le script principal. Il propose les modes automatique, manuel et direct. Choisissez un nœud en bas puis 「切换到手动节点」 en haut ; revenez ensuite à 「自动上网（推荐）」. Sans ce panneau, choisissez directement dans 「上网线路」. Le script public refuse les `proxy-providers` externes non vides ; conservez les extensions privées dans un autre profil. Voir la [configuration d’un autre ordinateur](../docs/family-client-setup.md).
