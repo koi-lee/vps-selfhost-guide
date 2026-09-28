@@ -28,6 +28,10 @@ Cette page traduit les instructions essentielles de démarrage. Les documents d�
 
 > Lisez d’abord AGENTS.md, README.md et docs/, puis expliquez les étapes en français. Utilisez mes propres comptes et serveurs. Demandez mon budget, opérateur, localisation, système, domaine et disponibilité IPv6. Vérifiez les versions et tarifs officiels actuels. Obtenez mon accord avant tout achat. Sauvegardez les services existants et préservez l’accès SSH. Terminez HY2, CDN et IPv4 VLESS avec le basculement automatique de Clash Verge Rev. Testez HY2 puis poursuivez avec les routes de secours et les tests de basculement selon le tableau des étapes. N’affichez aucun secret et ne modifiez pas les services sans rapport. Signalez explicitement les étapes non vérifiées.
 
+## Partager avec la famille et les amis
+
+Pour un usage partagé, suivez le [guide d’intégration 3X-UI](../docs/3x-ui-family-sharing.md) : entrées HY2/CDN/IPv4 gérées par le panneau, identité et abonnement HTTPS individuels, quotas, expiration et révocation. Il s’appuie sur la documentation et le code officiels v3.8.5, sans prétendre à un test sur un nouveau VPS. Ne lancez pas aussi les services autonomes sur les mêmes ports. Le partage des frais est un accord privé, pas un service de paiement du panneau ; les quotas ne réservent pas de bande passante. Testez deux utilisateurs et tous les protocoles, y compris les anciennes configurations après révocation. Le résumé ci-dessous décrit la voie autonome ; utilisez le chapitre lié pour la gestion par panneau.
+
 ## Étapes de déploiement
 
 Commencez par le lien de soutien RackNerd ci-dessus pour créer votre propre compte et vous connecter. Si vous avez déjà un compte, connectez-vous ; si vous avez un VPS adapté, passez l’achat. Créer un compte ne commande pas de serveur. Avant de choisir ou de payer une offre, transmettez le dépôt et la consigne ci-dessus à votre agent. Faites comparer vos besoins, les tarifs actuels, le renouvellement et les remboursements ; autorisez ensuite vous-même le paiement et attendez l’activation. Saisissez vous-même vos informations et gardez vos identifiants privés.

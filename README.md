@@ -23,16 +23,25 @@
 
 希望使用自己服务器的个人开发者、家庭用户，以及需要让 Agent 协助部署的读者。你需要自己的 VPS/域名、SSH 管理权限和客户端。软件模板可复用，服务器和域名费用由使用者自行承担。
 
+## 选择适合自己的部署路线
+
+| 目标 | 先读哪里 | 最终结果 |
+| --- | --- | --- |
+| 自己使用，直接维护服务配置 | [独立服务部署](docs/deployment.md) | HY2、CDN、IPv4 VLESS 与客户端自动回退 |
+| 与家人朋友共享，分配独立订阅 | [3X-UI 家庭与朋友共享教程](docs/3x-ui-family-sharing.md) | 面板统一管理三条入站，每人独立身份、订阅、额度和有效期 |
+
+多人共享时先选择面板路线，不要再同时安装独立服务占用相同端口。费用由成员自行约定，流量额度与共享带宽分开理解；跨协议统计、超额停用和完整撤销按新教程实测。已有服务的迁移也在该章节单独说明。
+
 ## 开始前先做这几件事
 
 1. **先注册账号**：通过上方 RackNerd 支持链接进入网站，注册并登录自己的账号。已有账号直接登录；已有可用 VPS 可跳过选购。
 2. **购买前交给 Agent**：把仓库文件夹和下面的任务发给 Agent，结合 [参数表](docs/parameters.example.md) 核对预算、运营商、设备条件与候选套餐。
 3. **确认后再购买**：由你核对总价、续费和退款条款，确认付款；等待 VPS 开通并验证 SSH 登录。
-4. 从上方官方下载页准备 Clash Verge Rev，按 [部署指南](docs/deployment.md) 完成多线路配置，再按 [验收与恢复](docs/verification.md) 验证每条线路及自动切换。
+4. 从上方官方下载页准备 Clash Verge Rev，按选定路线完成多线路配置，再按 [验收与恢复](docs/verification.md) 验证；多人共享还需完成两名测试用户的统计、限额和撤销检查。
 
 可以将下面这段任务连同仓库地址交给 Agent：
 
-> 请先读 AGENTS.md、README.md，再按 docs/deployment.md 的阶段表执行。目标是完成 HY2 主线路、VLESS/CDN 与 IPv4 VLESS 备用、Clash Verge Rev 自动切换及国内直连。先核对我的网络、服务器、域名、设备和已有服务，填写本地私密参数表。逐条部署并验证：HY2 成功是中间检查点，随后继续完成备用线路和切换验收。IPv6、多用户和远程订阅按实际需要启用；条件不足时记录缺口，不把单线路成功写成完整部署完成。保留自建线路的优先级回退策略，每一步备份并记录结果；已授权的步骤连续完成，涉及购买、账号验证或超出授权的操作时再由我确认。不要把密码、密钥或订阅链接发到聊天里。
+> 请先读 AGENTS.md、README.md，确认我是个人独立服务部署，还是家庭朋友共享的 3X-UI 面板部署，再按对应教程执行。目标是完成 HY2 主线路、VLESS/CDN 与 IPv4 VLESS 备用、Clash Verge Rev 自动切换及国内直连。先核对我的网络、服务器、域名、设备和已有服务，填写本地私密参数表。逐条部署并验证：HY2 成功是中间检查点，随后继续完成备用线路和切换验收。IPv6、多用户和远程订阅按实际需要启用；条件不足时记录缺口，不把单线路成功写成完整部署完成。保留自建线路的优先级回退策略，每一步备份并记录结果；已授权的步骤连续完成，涉及购买、账号验证或超出授权的操作时再由我确认。不要把密码、密钥或订阅链接发到聊天里。
 
 ## 最终配置与部署顺序
 
@@ -68,7 +77,8 @@ flowchart LR
 | 入口 | 内容 |
 |---|---|
 | [AGENTS.md](AGENTS.md) | Agent 执行边界、部署阶段与验收标准 |
-| [docs/deployment.md](docs/deployment.md) | VPS 选购、系统、HY2、VLESS、CDN、订阅与客户端 |
+| [docs/deployment.md](docs/deployment.md) | 独立服务路线：VPS、HY2、VLESS、CDN 与客户端 |
+| [docs/3x-ui-family-sharing.md](docs/3x-ui-family-sharing.md) | 面板路线：安装、入站、按人订阅、额度、撤销和迁移 |
 | [docs/parameters.example.md](docs/parameters.example.md) | 使用者自己的部署参数 |
 | [docs/verification.md](docs/verification.md) | 实测与恢复流程 |
 | [docs/rebuild-runbook.md](docs/rebuild-runbook.md) | 安装映射、续期、多用户边界和恢复顺序 |

@@ -28,6 +28,10 @@ Esta página traduce las instrucciones esenciales de inicio. Los documentos deta
 
 > Lee primero AGENTS.md, README.md y docs/ y explica los pasos en español. Usa mis propios servidores y cuentas. Pregunta por presupuesto, operador, ubicación, sistema, dominio e IPv6. Comprueba las versiones y precios oficiales actuales. Solicita aprobación antes de comprar. Respalda los servicios existentes y conserva el acceso SSH. Completa HY2, CDN e IPv4 VLESS con conmutación automática en Clash Verge Rev. Verifica HY2 primero y continúa con los respaldos y las pruebas de conmutación según la tabla de etapas. No muestres credenciales ni modifiques servicios ajenos a la tarea. Indica claramente los pasos no verificados.
 
+## Compartir con familiares y amigos
+
+Para compartir, sigue la [guía de integración de 3X-UI](../docs/3x-ui-family-sharing.md): entradas HY2/CDN/IPv4 administradas por el panel, identidad y suscripción HTTPS individuales, cuotas, caducidad y revocación. Se basa en documentación y código oficiales de v3.8.5, sin afirmar pruebas en un VPS nuevo. No ejecutes además los servicios independientes en los mismos puertos. Repartir gastos es un acuerdo privado, no un sistema de cobro del panel; las cuotas no reservan ancho de banda. Prueba dos usuarios y todos los protocolos, incluidas las credenciales antiguas almacenadas tras revocarlas. El resumen siguiente describe la ruta independiente; para la ruta del panel utiliza el capítulo enlazado.
+
 ## Secuencia de despliegue
 
 Primero utiliza el enlace de apoyo a RackNerd de arriba para registrar tu propia cuenta e iniciar sesión. Si ya tienes cuenta, inicia sesión; si ya tienes un VPS adecuado, omite la compra. Registrar una cuenta no compra un servidor. Antes de elegir o pagar un plan, entrega el repositorio y la petición anterior al agente. Pídele comparar tus necesidades, precios actuales, renovación y reembolsos; después autoriza tú mismo el pago y espera la activación. Introduce tú mismo tus datos y mantén las credenciales privadas.

@@ -28,6 +28,10 @@ This page translates the core onboarding instructions. The detailed documents li
 
 > Read AGENTS.md, README.md and docs/ first. Explain the procedure in English. Use my own accounts and server. Ask for my budget, ISP, location, operating system, domain and IPv6 availability. Verify current official versions and prices. Obtain approval before any purchase. Back up existing services and preserve SSH access. Complete HY2, CDN and IPv4 VLESS with Clash Verge Rev automatic fallback. Test HY2 first, then continue through backup routes and failover verification using the deployment stage table; do not stop at the first working route. Do not expose credentials or change unrelated services. Report untested steps honestly.
 
+## Family and friend sharing
+
+For shared use, follow the [3X-UI integration guide](../docs/3x-ui-family-sharing.md): panel-managed HY2/CDN/IPv4 inbounds, one identity and HTTPS subscription per person, quotas, expiry and revocation. It references official v3.8.5 documentation and source, without claiming fresh-VPS testing. Do not run the standalone services below on the same ports. Sharing costs is a private agreement, not panel billing; traffic quotas do not reserve bandwidth. Test two users and every protocol, including old cached credentials after revocation. The deployment overview below describes the standalone route; use the linked chapter for panel-managed setup.
+
 ## Deployment sequence
 
 First use the RackNerd support link above to register and sign in to your own account. Existing users can sign in directly; skip purchasing if you already have a suitable VPS. Account registration does not purchase a server. Before choosing or paying for a plan, give this repository and the agent request above to your agent. Have it compare your needs, current prices, renewal and refund terms; only then approve payment yourself and wait for provisioning. Enter account details yourself and keep credentials private.

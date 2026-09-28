@@ -12,6 +12,7 @@
 - [Release status](docs/release-status.md): offline evidence and publication limits.
 
 ## Task paths
+- Family/friend sharing: [3X-UI integration](docs/3x-ui-family-sharing.md). Choose panel-managed inbounds before installing standalone services; verify two separate users, quotas, expiry, subscriptions and revocation. Reference: v3.8.5 official sources, not a fresh-VPS acceptance result.
 - New deployment: read the agent contract, parameters, deployment stage table, rebuild runbook and verification checklist. Complete HY2, CDN and IPv4 VLESS fallback; a working HY2-only stage is not the final multi-route result.
 - Client setup or failover: [client guide](docs/client-failover.md). Self-hosted routes use priority fallback, without external VPN subscriptions; match instructions to the active panel script.
 - Official client download: https://github.com/clash-verge-rev/clash-verge-rev/releases
