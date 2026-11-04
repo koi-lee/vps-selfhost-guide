@@ -2,6 +2,12 @@
 
 [简体中文](../README.md) · [English](README.en.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md) · [Français](README.fr.md)
 
+> Usage timeline: records confirm this setup worked on China Mobile broadband in Chengdu on 2026-08-14. By 2026-11-04, that spans 82 days (nearly three months). There were also disconnection and DNS/client-configuration issues requiring troubleshooting. This is elapsed usage history, not 82 days of uninterrupted uptime.
+
+> Browser checks on 2026-11-04 using the existing Mac and self-hosted HY2 route: Google search returned results; a YouTube video played to about 20 seconds; the signed-in Codex workspace loaded, but no coding task was submitted. TikTok reached a login/date-of-birth flow; video browsing was not verified. Connection records confirmed these test domains used HY2. This is not a long-term stability or mobile-app test.
+
+> The author reports using this setup successfully with a RackNerd VPS on China Mobile home broadband in Chengdu. This is one personal usage example; other networks and datacenters still need testing. The public guide has not yet been reproduced end to end on a fresh VPS.
+
 This guide covers VPS selection, deployment, Clash Verge Rev configuration and troubleshooting. Ask your agent to read README.md and AGENTS.md, then guide setup and verification for your network and server. Use your own accounts and server; configurations are examples.
 
 ## Downloads and deployment target
@@ -34,7 +40,9 @@ For shared use, follow the [3X-UI integration guide](../docs/3x-ui-family-sharin
 
 ## Deployment sequence
 
-First use the RackNerd support link above to register and sign in to your own account. Existing users can sign in directly; skip purchasing if you already have a suitable VPS. Account registration does not purchase a server. Before choosing or paying for a plan, give this repository and the agent request above to your agent. Have it compare your needs, current prices, renewal and refund terms; only then approve payment yourself and wait for provisioning. Enter account details yourself and keep credentials private.
+For your first setup, fill in only the budget, ISP/location, computer OS, and whether you already have a VPS and domain in the [local parameter sheet](../docs/parameters.example.md). Leave unfamiliar technical fields blank until they are explained. The detailed Chinese deployment guide now includes a beginner reading order and definitions. If you are new to terminals and server administration, ask your agent to explain each step and where to run it; do not paste an entire page of commands.
+
+If you already have a suitable VPS, reuse it. Otherwise compare plans before creating an account: for light personal use, start by evaluating KVM plans around 1 vCPU and 1 GB RAM, then check location, UDP, traffic, IPv4, initial total and renewal price. Self-hosting requires Linux maintenance; buying a VPS does not configure it. RackNerd is one candidate, not a guarantee of speed or an extra discount. Its terms provide no automatic refund after payment. Use the affiliate link above only if you decide it fits, then register and approve payment yourself. Enter account details yourself and keep credentials private. [Terms](https://www.racknerd.com/terms-of-service)
 
 1. Compare VPS renewal price, refund terms, traffic quota, UDP and IPv6 support. Test the actual route during peak hours; distance alone does not predict speed.
 2. Check architecture, ports, time and firewall. Use a valid certificate for your own domain and matching SNI. Keep administrative interfaces on loopback behind an SSH tunnel.

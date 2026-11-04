@@ -2,6 +2,12 @@
 
 [简体中文](../README.md) · [English](README.en.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md) · [Français](README.fr.md)
 
+> Periodo de uso: el funcionamiento en China Mobile de Chengdu se confirmó el 2026-08-14; hasta el 2026-11-04 transcurrieron 82 días (casi tres meses). También hubo cortes y problemas de DNS/configuración del cliente que requirieron mantenimiento. No son 82 días de servicio ininterrumpido.
+
+> Pruebas del 2026-11-04 en el Mac existente y la ruta HY2 propia: Google devolvió resultados; un vídeo de YouTube se reprodujo unos 20 segundos; cargó el espacio de Codex con sesión iniciada, sin enviar tareas. TikTok llegó al acceso/verificación de fecha de nacimiento; no se verificaron vídeos. Los registros confirmaron HY2 para estos dominios. No es una prueba de estabilidad prolongada ni de aplicaciones móviles.
+
+> El autor confirma que utiliza esta configuración con un VPS de RackNerd y banda ancha doméstica de China Mobile en Chengdu. Es un caso personal; otras redes y centros de datos requieren pruebas. La guía pública aún no se ha reproducido de principio a fin en un VPS nuevo.
+
 Esta guía cubre la elección del VPS, el despliegue, Clash Verge Rev y la resolución de problemas. Pide al agente leer README.md y AGENTS.md para adaptar la configuración y las pruebas a tu red y servidor. Usa tus propias cuentas y servidor; las configuraciones son ejemplos.
 
 ## Descargas y objetivo del despliegue
@@ -34,7 +40,9 @@ Para compartir, sigue la [guía de integración de 3X-UI](../docs/3x-ui-family-s
 
 ## Secuencia de despliegue
 
-Primero utiliza el enlace de apoyo a RackNerd de arriba para registrar tu propia cuenta e iniciar sesión. Si ya tienes cuenta, inicia sesión; si ya tienes un VPS adecuado, omite la compra. Registrar una cuenta no compra un servidor. Antes de elegir o pagar un plan, entrega el repositorio y la petición anterior al agente. Pídele comparar tus necesidades, precios actuales, renovación y reembolsos; después autoriza tú mismo el pago y espera la activación. Introduce tú mismo tus datos y mantén las credenciales privadas.
+Para empezar, rellena en la [tabla local de parámetros](../docs/parameters.example.md) solo el presupuesto, ubicación y operador, sistema del ordenador y si ya tienes VPS y dominio. Deja en blanco los campos técnicos que no entiendas hasta aclararlos. La guía detallada en chino incluye un orden de lectura y definiciones para principiantes. Si no conoces el terminal o la administración de servidores, pide al agente que explique cada paso y dónde ejecutarlo; no pegues una página entera de comandos.
+
+Si ya tienes un VPS adecuado, reutilízalo. Si no, compara antes de registrarte: para uso personal ligero, evalúa planes KVM de alrededor de 1 vCPU y 1 GB de RAM y comprueba ubicación, UDP, tráfico, IPv4, total inicial y renovación. Necesitarás mantener Linux; comprar no configura el servidor. RackNerd es una opción, sin garantía de velocidad ni descuento adicional. Sus condiciones no ofrecen reembolsos automáticos tras el pago. Si decides que encaja, usa el enlace de afiliado de arriba, regístrate y autoriza tú mismo el pago. Mantén tus credenciales privadas. [Condiciones del servicio](https://www.racknerd.com/terms-of-service)
 
 1. Compara renovación, reembolsos, cuota de tráfico y compatibilidad con UDP e IPv6. Prueba la ruta real en horas punta: la distancia no garantiza calidad.
 2. Revisa arquitectura, hora, puertos y cortafuegos. Usa un certificado válido para tu dominio y un SNI coincidente. Mantén la administración en loopback mediante un túnel SSH.

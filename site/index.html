@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>自建 VPS 网络工具配置指南 | Hysteria2、VLESS、Clash</title>
+  <title>用自己的 VPS 访问 Google、YouTube 与 AI 工具｜Koi 的自建教程</title>
   <meta name="description" content="面向个人开发者的自建 VPS 网络工具配置学习指南，涵盖服务器选择、Hysteria2、VLESS、Clash Verge Rev、验证与恢复。完整文档在 GitHub。">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://koi-lee.github.io/vps-selfhost-guide/">
@@ -16,20 +16,23 @@
   <style>
     :root{color-scheme:dark;--bg:#0b1220;--panel:#111c2e;--text:#edf4ff;--muted:#a9bad2;--accent:#69b7ff;--line:#263a55}
     *{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#0b1220,#10233b);color:var(--text);font:16px/1.7 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    main{max-width:860px;margin:auto;padding:72px 24px}section{background:rgba(17,28,46,.9);border:1px solid var(--line);border-radius:18px;padding:28px;margin-top:22px}h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.15;margin:0 0 18px}h2{margin-top:0}p{color:var(--muted)}a{color:var(--accent)}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}.button{display:inline-block;padding:11px 17px;border-radius:10px;border:1px solid var(--accent);text-decoration:none;color:#061321;background:var(--accent);font-weight:700}.button.secondary{color:var(--text);background:transparent}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}.card{padding:18px;border:1px solid var(--line);border-radius:12px}.card strong{display:block;color:var(--text);margin-bottom:5px}footer{color:var(--muted);font-size:.9rem;margin-top:28px}
+    main{max-width:860px;margin:auto;padding:72px 24px}section{background:rgba(17,28,46,.9);border:1px solid var(--line);border-radius:18px;padding:28px;margin-top:22px}h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.15;margin:0 0 18px}h2{margin-top:0}p{color:var(--muted)}a{color:var(--accent)}html{scroll-padding-top:24px}section:target{border-color:var(--accent)}li+li{margin-top:12px}summary{cursor:pointer;color:var(--accent);padding:8px 0}blockquote{margin:16px 0;padding:12px 18px;border-left:3px solid var(--accent);color:var(--muted)}a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:4px}@media(max-width:480px){main{padding:36px 18px}section{padding:22px}ol,ul{padding-left:22px}.button{max-width:100%}}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}.button{display:inline-block;padding:11px 17px;border-radius:10px;border:1px solid var(--accent);text-decoration:none;color:#061321;background:var(--accent);font-weight:700}.button.secondary{color:var(--text);background:transparent}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}.card{padding:18px;border:1px solid var(--line);border-radius:12px}.card strong{display:block;color:var(--text);margin-bottom:5px}footer{color:var(--muted);font-size:.9rem;margin-top:28px}
   </style>
 </head>
 <body>
 <main>
   <header>
-    <p>公开学习文档 · Agent 可读入口</p>
-    <h1>自建 VPS 网络工具配置指南</h1>
-    <p>整理服务器选择、Hysteria2、VLESS、Clash Verge Rev、验证和恢复流程。文档只提供示例配置，实际部署需要使用你自己的服务器和账号。</p>
-    <div class="actions"><a class="button" href="https://github.com/koi-lee/vps-selfhost-guide">查看 GitHub 完整教程</a><a class="button secondary" href="https://github.com/koi-lee/vps-selfhost-guide/issues">反馈问题</a></div>
+    <p>成都移动宽带，日常使用近三个月</p>
+    <h1>用自己的 VPS，<br>连接海外网站与 AI 工具</h1>
+    <p>我从 2026 年 8 月开始使用这套 RackNerd VPS 方案，至今仍在使用。这份教程来自近三个月的实际使用、排障和持续完善，帮你从准备服务器走到客户端连接。</p>
+    <p>VPS 就是一台租用的远程服务器。按教程配置服务器和电脑后，再用客户端连接。教程免费，服务器和域名另计费；已有合适 VPS 可以复用。</p>
+    <div class="actions"><a class="button" href="#start">先看我该怎么开始</a><a class="button secondary" href="#results">查看实际使用结果</a></div>
   </header>
-  <section><h2>适合谁</h2><p>适合想学习自建网络工具、希望让 Agent 分阶段协助部署，并能自行准备账号、服务器和网络环境的读者。</p><div class="grid"><div class="card"><strong>部署</strong>从 VPS 选择到服务分阶段配置。</div><div class="card"><strong>客户端</strong>使用 Clash Verge Rev 导入示例配置。</div><div class="card"><strong>验证与恢复</strong>每一步保留检查和回滚边界。</div></div></section>
-  <section><h2>给 Agent 的入口</h2><p>让 Agent 先阅读 GitHub 仓库中的 <a href="https://github.com/koi-lee/vps-selfhost-guide/blob/main/README.md">README.md</a>、<a href="https://github.com/koi-lee/vps-selfhost-guide/blob/main/AGENTS.md">AGENTS.md</a> 和 <a href="https://github.com/koi-lee/vps-selfhost-guide/blob/main/llms.txt">llms.txt</a>，再根据你的服务器情况逐步执行。</p></section>
-  <section><h2>使用边界</h2><p>本站和仓库不提供服务器、账号、节点、订阅或代运维服务；不要提交密码、密钥、订阅链接和个人信息。RackNerd 链接属于作者实际使用的服务商，可能产生佣金，不代表固定套餐或速度。</p></section>
+  <section id="results"><h2>搜索资料、看视频、连接 AI 工具</h2><p>这套方案用于建立你自己的网络线路。当前电脑已完成 Google 搜索与 YouTube 视频播放检查，Codex 也能进入登录后的工作界面。</p><details><summary>查看使用记录与本次检查结果</summary><p>记录确认 2026 年 8 月 14 日移动宽带下已可用；截至 2026 年 11 月 4 日，时间跨度为 82 天。</p><p>这段时间也遇到过掉线和 DNS／客户端配置问题，并做过排查和维护。因此，这里记录的是使用经历的时间跨度，不是连续 82 天零故障，也不保证其他网络有相同表现。</p><ul><li><strong>Google：</strong>实际搜索并返回结果。</li><li><strong>YouTube：</strong>正片播放到约 20 秒。</li><li><strong>Codex：</strong>进入登录后的工作界面，未提交编程任务。</li><li><strong>TikTok：</strong>网站可达，进入登录／生日验证流程，视频浏览未验证。</li></ul><p>测试使用作者现有 Mac、Chrome 与自建 HY2 线路，连接记录已核对。其他运营商、机房、手机 App 与长期稳定性仍需分别验证。网络连接不代替各平台的账号、地区和套餐要求。</p></details></section>
+  <section id="start"><h2>第一次搭建，按这三步开始</h2><p>适合愿意照着步骤配置、遇到问题也愿意排查的读者。你需要一台电脑、自己的服务器账号，以及用于配置的域名。服务器开通后还要部署软件，才能连接使用。</p><ol><li><strong>先选一条教程路线。</strong>自己使用，从<a href="https://github.com/koi-lee/vps-selfhost-guide/blob/main/docs/deployment.md">独立服务部署教程</a>开始；需要给家人朋友分配订阅，选<a href="https://github.com/koi-lee/vps-selfhost-guide/blob/main/docs/3x-ui-family-sharing.md">面板共享教程</a>。两条路线选一条，不要同时安装。</li><li><strong>准备服务器，再开始配置。</strong>已有 VPS 就先核对条件；没有时先看下方选购说明，确认费用再购买。按教程逐条完成服务器与客户端配置，有 AI 助手也可以使用下方的任务说明。</li><li><strong>用自己的设备检查结果。</strong>先确认一条线路能连接，再完成教程中的备用线路与自动切换。实际搜索一次、播放视频，并验证自己要用的 AI 工具；卡在哪一步就保留错误，从该步骤排查。</li></ol><p>本次网站检查使用 Mac。教程提供 Windows、macOS、Linux 桌面客户端入口；手机 App 尚未完成本轮验证。如果你只想买完就直接连接，这份自建教程还需要你投入配置和维护时间。</p></section>
+  <section><h2>还没有服务器？购买前看这几项</h2><p>个人轻量使用可从 1 vCPU、1 GB 内存的 KVM VPS 级别比较。付款前核对地区、UDP、流量、IPv4、首期总价和续费价；不要用配置大小推断实际网速。</p><div class="actions"><a class="button" rel="sponsored noopener" href="https://my.racknerd.com/aff.php?aff=21220">查看 RackNerd 当前套餐</a><a class="button secondary" href="https://github.com/koi-lee/vps-selfhost-guide/blob/main/docs/deployment.md">先读购买前检查项</a></div><p>作者实际使用 RackNerd，通过此推广链接购买可能产生佣金。它只是候选供应商，不保证额外折扣或适合你的网络。先比较套餐再注册；价格、续费与退款以官方条款和结算页面为准，不保证无条件退款。</p></section>
+  <section><h2>想让 AI 助手带着做？</h2><p>先把<a href="https://github.com/koi-lee/vps-selfhost-guide">教程仓库链接</a>和下面的任务说明一起发给你正在使用的 AI 助手。它需要能读取文档；执行能力取决于你使用的工具。已有终端和服务器基础时也可以直接阅读教程；零基础建议先用助手逐步解释，不要整页复制命令。</p><blockquote>请先阅读仓库的 README.md 和 AGENTS.md。我第一次搭建 VPS，请先帮我选择个人独立服务或家庭共享路线，一次问清我的预算、现有服务器、运营商、电脑系统和域名。先说明费用与操作影响，再分阶段配置和验证；不要让我把密码、密钥或订阅链接发到聊天里。遇到失败先定位原因，保留可恢复配置；未验证的功能明确标注。</blockquote><p>遇到文档问题，可以<a href="https://github.com/koi-lee/vps-selfhost-guide/issues">提交脱敏的问题描述</a>，写清步骤、预期与实际结果。不要上传密码、完整订阅或私密截图。这里提供教程与纠错入口，不提供代运维或即时响应保证。</p></section>
+
   <footer>© 2026 Koi · <a href="https://github.com/koi-lee/vps-selfhost-guide">源代码与更新记录在 GitHub</a></footer>
 </main>
 </body>
